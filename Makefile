@@ -2,8 +2,8 @@ NAME	= 	ft_containers
 
 SRC		=	srcs/main.cpp
 
-HEADERS =	srcs/stack.h\
-			srcs/vector.h
+HEADERS =	srcs/contatiners/stack.h\
+			srcs/contatiners/vector.h
 
 CXX		= c++
 
@@ -11,7 +11,7 @@ CPPFLAGS	= -g -std=c++98 -Wall -Wextra -Werror
 
 OBJ		= $(SRC:.cpp=.o)
 
-$(NAME): $(OBJ) $(HEADERS)
+$(NAME): $(OBJ) #$(HEADERS)
 	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 all: $(NAME)

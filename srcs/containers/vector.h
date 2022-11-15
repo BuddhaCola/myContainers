@@ -12,12 +12,10 @@ namespace FT{
 		size_t	_size;
 		size_t	_capacity;
 	public:
-		vector(T const &valueType, size_t size) : _pointer(valueType), _size(size) {}
-		T& operator[](size_t i) {
-			return _pointer[i];
-		}
+		//constructors
+		explicit vector(T const &valueType, size_t size) : _pointer(valueType), _size(size) {}
 
-		explicit vector(const allocator_type& alloc = allocator_type()) :_alloc(alloc), _pointer(0), _size(0), _capacity(0) { }
+		explicit vector(const allocator_type& alloc = allocator_type()) :_alloc(alloc), _pointer(0), _size(0), _capacity(0) {}
 
 		T& at(size_t i) {
 			if (i >= _size)
@@ -50,9 +48,7 @@ namespace FT{
 			++_size;
 		}
 
-
 		void shrink_to_fit() {
-
 		}
 
 		size_t size() {
@@ -61,6 +57,10 @@ namespace FT{
 
 		size_t capacity(){
 			return _capacity;
+		}
+		//operators
+		T& operator[](size_t i) {
+			return _pointer[i];
 		}
 	};
 }

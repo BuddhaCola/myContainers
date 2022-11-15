@@ -1,7 +1,7 @@
 #include <array>
 #include <iostream>
-#include "stack.h"
-#include "vector.h"
+#include "containers/stack.h"
+#include "containers/vector.h"
 
 int main() {
 	std::vector<int> orig;

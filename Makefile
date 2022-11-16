@@ -1,13 +1,12 @@
 NAME	= 	ft_containers
 
-SRC		=	srcs/main.cpp
-
-HEADERS =	srcs/contatiners/stack.h\
-			srcs/contatiners/vector.h
+SRC		=	srcs/main.cpp\
+#			srcs/contatiners/stack.h\
+#			srcs/contatiners/vector.h
 
 CXX		= c++
 
-CPPFLAGS	= -g -std=c++98 -Wall -Wextra -Werror
+CPPFLAGS	= -g #-std=c++98 -Wall -Wextra -Werror
 
 OBJ		= $(SRC:.cpp=.o)
 

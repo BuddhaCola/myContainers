@@ -4,7 +4,7 @@
 #include <vector>
 #include <stack>
 
-namespace FT {
+namespace ft {
 	template<class T, class Container = std::vector<T> >
 	class stack {
 	public:

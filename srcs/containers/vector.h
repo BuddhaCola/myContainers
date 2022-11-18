@@ -54,6 +54,13 @@ namespace ft{
 			assign(other.begin(), other.end());
 		}
 
+		~vector()
+		{
+			clear();
+			if (_capacity > 0)
+				_allocator.deallocate(_pointer, _capacity);
+		}
+
 		//member functions
 		template <class InputIterator>
 		void assign(
@@ -85,7 +92,6 @@ namespace ft{
 		void clear() {
 			for (; _size > 0; _size--)
 				_allocator.destroy(_pointer + _size - 1);
-
 		};
 
 		void clear_when_exception(int i, pointer new_ptr, size_type cap) {
@@ -163,7 +169,6 @@ namespace ft{
 				move(_pointer, pos, n);
 				fill_new_elements(_pointer + pos, _capacity, n, val);
 				_size = new_size;
-
 			}
 		}
 
@@ -217,35 +222,35 @@ namespace ft{
 		}
 
 		void reserve(size_t n) {
-//			if (n > _capacity) {
-//				pointer new_ptr = _allocator.allocate(n);
-//				if (_pointer)
-//				{
-//					int s = _size;
-//					while(s--){
-//						new_ptr[s] = _pointer[s - 1];
-//						_allocator.destroy(_pointer + s);
-//					}
-//					_allocator.deallocate(_pointer, _capacity);
-//				}
-//				_pointer = new_ptr;
-//				_capacity = n;
-//			}
-			if (n > capacity()) {
-				T *newarr = reinterpret_cast<T *>(new int8_t[n * sizeof(T)]);
-				if (n == 0)
-					n = 1;
-				for (size_t i = 0; i < _size; ++i) {
-					auto lol = _pointer[i]; //the fuck?!
-					new(newarr + i) T(lol);
+			if (n > _capacity) {
+				pointer new_ptr = _allocator.allocate(n);
+				if (_pointer)
+				{
+					int s = _size;
+					while(s--){
+						new_ptr[s] = _pointer[s - 1];
+						_allocator.destroy(_pointer + s);
+					}
+					_allocator.deallocate(_pointer, _capacity);
 				}
-				for (size_t i = 0; i < _size; ++i) {
-					(_pointer + i)->~T();
-				}
-				delete[] reinterpret_cast<int_fast8_t *>(_pointer);
-				_pointer = newarr;
+				_pointer = new_ptr;
 				_capacity = n;
 			}
+//			if (n > capacity()) {
+//				T *newarr = reinterpret_cast<T *>(new int8_t[n * sizeof(T)]);
+//				if (n == 0)
+//					n = 1;
+//				for (size_t i = 0; i < _size; ++i) {
+//					auto lol = _pointer[i]; //the fuck?!
+//					new(newarr + i) T(lol);
+//				}
+//				for (size_t i = 0; i < _size; ++i) {
+//					(_pointer + i)->~T();
+//				}
+//				delete[] reinterpret_cast<int_fast8_t *>(_pointer);
+//				_pointer = newarr;
+//				_capacity = n;
+//			}
 		}
 
 		void push_back(const T &value) {

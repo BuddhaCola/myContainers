@@ -79,7 +79,7 @@ namespace ft{
 
 		T& at(size_t i) {
 			if (i >= _size)
-				throw std::out_of_range("vector");//TODO
+				throw std::out_of_range("vector");//TODO change
 			return _pointer[i];
 		}
 
@@ -94,7 +94,7 @@ namespace ft{
 				_allocator.destroy(_pointer + _size - 1);
 		};
 
-		void clear_when_exception(int i, pointer new_ptr, size_type cap) {
+		void clear_on_exception(int i, pointer new_ptr, size_type cap) {
 			while (i--) {
 				_allocator.destroy(new_ptr + i);
 			}
@@ -117,7 +117,7 @@ namespace ft{
 				}
 			}
 			catch (...) {
-				clear_when_exception(i, new_ptr, cap);
+				clear_on_exception(i, new_ptr, cap);
 				throw ;
 			}
 		}
@@ -136,7 +136,7 @@ namespace ft{
 				}
 			}
 			catch (...) {
-				clear_when_exception(i, new_ptr, cap);
+				clear_on_exception(i, new_ptr, cap);
 				throw ;
 			}
 		};
@@ -303,8 +303,19 @@ namespace ft{
 			return _allocator.max_size();
 		}
 		//operators
+		vector& operator=(const vector& other)
+		{
+			if (this == &other)
+				return *this;
+			clear();
+			insert(begin(), other.begin(), other.end());
+			return *this;
+		}
+
 		reference operator[](difference_type n) { return _pointer[n]; }
+
 		const_reference operator[](difference_type n) const { return _pointer[n]; }
+
 		friend bool operator== (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
 			if (lhs.size() == rhs.size()){
 				return std::equal(lhs.begin(), lhs.end(), rhs.begin());
@@ -316,12 +327,12 @@ namespace ft{
 			return lhs != rhs;
 		};
 
-		friend bool operator<  (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
+		friend bool operator< (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
 			return ft::lexicographical_compare(lhs.begin(), lhs.end(),
 											   rhs.begin(), rhs.end());
 		};
 
-		friend bool operator>  (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
+		friend bool operator> (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
 			return rhs<lhs;
 		};
 

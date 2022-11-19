@@ -84,5 +84,21 @@ bool lexicographical_compare(InputIterator1 first1, InputIterator1 last1,
 	{
 		return distance(first, last, typename ft::iterator_traits<InputIter>::iterator_category());
 	}
+
+	template <class InputIterator1, class InputIterator2>
+	bool equal ( InputIterator1 first1, InputIterator1 last1, InputIterator2 first2 )
+	{
+		while (first1!=last1) {
+			if (*first1 != *first2)   // or: if (!pred(*first1,*first2)), for version 2
+				return false;
+			++first1; ++first2;
+		}
+		return true;
+	}
+
+	template <class T> void swap ( T& a, T& b )
+	{
+		T c(a); a=b; b=c;
+	}
 }
 #endif //MYCONTAINERS_ULTILS_H

@@ -1,23 +1,12 @@
-//#include <array>
-//#include <iostream>
-//#include "containers/stack.h"
-//#include "containers/vector.h"
-////#include "/Users/wtaylor/Projects/ft_containers_Dinar/vector.hpp"
-//#include <sstream>
-//
-//void print_comparisation(std::vector<int>& orig, ft::vector<int>& mine, int i);
-//
-//template <typename T>
-//std::vector<int> reserve_test(ft::vector<T> vector) {
-//	std::vector<int> v;
-////	g_start1 = timer();
-//	vector.reserve(9900 * 10000);
-////	g_end1 = timer();
-//	v.push_back(vector.size());
-//	v.push_back(vector.capacity());
-//	return v;
-//}
-//
+#include <array>
+#include <iostream>
+#include "containers/stack.h"
+#include "containers/vector.h"
+//#include "/Users/wtaylor/Projects/ft_containers_Dinar/vector.hpp"
+#include <sstream>
+
+void print_comparisation(std::vector<int>& orig, ft::vector<int>& mine, int i);
+
 //int main() {
 //	std::vector<int> orig;
 //	ft::vector<int> mine;
@@ -98,49 +87,49 @@
 //	mine.reserve(1100);
 //	print_comparisation(orig, mine, -1);
 //}
-//
-//template <class T>std::string result(std::vector<T> v, int i) {
-//	std::stringstream  stream;
-//	size_t size = v.size();
-//	stream << "size() = " << size;
-//	size_t capacity = v.capacity();
-//	stream << " capacity() = " << capacity;
-//	size_t max_size = v.max_size();
-//	stream << " max_size()" << max_size;
-//	if (i >= 0) {
-//		T q = v[i];
-//		stream << " [" << i << "] = " << q;
-//	}
-//	stream << std::endl;
-//	return stream.str();
-//}
-//
-//template <class T>std::string result(ft::vector<T> &v, int i) {
-//	std::stringstream  stream;
-//	size_t size = v.size();
-//	stream << "size() = " << size;
-//	size_t capacity = v.capacity();
-//	stream << " capacity() = " << capacity;
-//	size_t max_size = v.max_size();
-//	stream << " max_size()" << max_size;
-//	if (i >= 0) {
-//		T q = v[i];
-//		stream << " [" << i << "] = " << q;
-//	}
-//	stream << std::endl;
-//	return stream.str();
-//}
-//
-//void print_comparisation(std::vector<int>& orig, ft::vector<int>& mine, int i) {
-//	std::string std_result = result(orig, i);
-//	std::string ft_result = result(mine, i);
-////	if (std_result != ft_result)
-//		std::cout << "std " << std_result << "ft " << ft_result;
-//}
-//
+
+template <class T>std::string result(std::vector<T> v, int i) {
+	std::stringstream  stream;
+	size_t size = v.size();
+	stream << "size() = " << size;
+	size_t capacity = v.capacity();
+	stream << " capacity() = " << capacity;
+	size_t max_size = v.max_size();
+	stream << " max_size()" << max_size;
+	if (i >= 0) {
+		T q = v[i];
+		stream << " [" << i << "] = " << q;
+	}
+	stream << std::endl;
+	return stream.str();
+}
+
+template <class T>std::string result(ft::vector<T> &v, int i) {
+	std::stringstream  stream;
+	size_t size = v.size();
+	stream << "size() = " << size;
+	size_t capacity = v.capacity();
+	stream << " capacity() = " << capacity;
+	size_t max_size = v.max_size();
+	stream << " max_size()" << max_size;
+	if (i >= 0) {
+		T q = v[i];
+		stream << " [" << i << "] = " << q;
+	}
+	stream << std::endl;
+	return stream.str();
+}
+
+void print_comparisation(std::vector<int>& orig, ft::vector<int>& mine, int i) {
+	std::string std_result = result(orig, i);
+	std::string ft_result = result(mine, i);
+//	if (std_result != ft_result)
+		std::cout << "std " << std_result << "ft " << ft_result;
+}
+
 #include "/Users/wtaylor/Projects/ft_containers-unit-test/sources/system/system_methods.ipp"
 #include "/Users/wtaylor/Projects/ft_containers-unit-test/sources/vector_tests/__service.ipp"
-
+#include "/Users/wtaylor/Projects/ft_containers-unit-test/config.hpp"
 template <typename T>
 std::vector<int> constructor_test(std::vector<T> vector) {
 	std::vector<int> v;

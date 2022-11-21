@@ -3,6 +3,7 @@
 
 #include "../Utils/Ultils.h"
 #include "../Iterators/vector_iterator.h"
+#include "../Iterators/reverse_iterator.h"
 
 namespace ft{
 	template<class T, class Allocator = std::allocator<T> > class vector {
@@ -17,6 +18,8 @@ namespace ft{
 		typedef typename allocator_type::reference			reference;
 		typedef ft::vector_iterator<pointer>				iterator;
 		typedef ft::vector_iterator<const_pointer>			const_iterator;
+		typedef ft::reverse_iterator<iterator>				reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 	private:
 		allocator_type _allocator;
 		pointer _pointer;
@@ -83,11 +86,24 @@ namespace ft{
 			return _pointer[i];
 		}
 
-		iterator begin() { return iterator(_pointer); };
-		iterator end() { return iterator(_pointer + _size); };
+		reference back() {
+			return _pointer[_size - 1];
+		}
+		const_reference back() const {
+			return _pointer[_size - 1];
+		}
 
-		const_iterator begin() const { return const_iterator(_pointer); };
-		const_iterator end() const { return const_iterator(_pointer + _size); };
+		iterator begin() {
+			return iterator(_pointer);
+		}
+
+		const_iterator begin() const {
+			return const_iterator(_pointer);
+		}
+
+		size_t capacity(){
+			return _capacity;
+		}
 
 		void clear() {
 			for (; _size > 0; _size--)
@@ -101,12 +117,44 @@ namespace ft{
 			_allocator.deallocate(new_ptr, cap);
 		};
 
-		pointer data() {
+		pointer data() const {
 			return _pointer;
 		}
 
 		bool empty() const {
 			return _size == 0;
+		}
+
+		iterator end() {
+			return iterator(_pointer + _size);
+		}
+
+		const_iterator end() const {
+			return const_iterator(_pointer + _size);
+		}
+
+		iterator erase (iterator position) {
+			return erase(position, position + 1);
+		}
+
+		iterator erase (iterator first, iterator last) {
+			size_type n = ft::distance(first, last);
+			size_type tail_len = ft::distance(last, end());
+			for (int i = 0; i < n; ++i) {
+				_allocator.destroy(first.base() + i);
+			}
+			for (int i = 0; i < tail_len; ++i) {
+				first.base()[i] = last.base()[i];
+			}
+			_size -= n;
+			return first;
+		}
+
+		reference front() {
+			return *_pointer;
+		}
+		const_reference front() const {
+			return *_pointer;
 		}
 
 		void fill_new_elements(pointer new_ptr, size_type cap, size_type n, const value_type& val){
@@ -221,6 +269,33 @@ namespace ft{
 			}
 		}
 
+		void pop_back() {
+			_allocator.destroy(_pointer + _size);
+			_size--;
+		}
+
+		void push_back(const T &value) {
+			if (_size == _capacity)
+				resize(_size + 1, value);
+			else
+				_allocator.construct(_pointer + _size++, value);
+		}
+
+		reverse_iterator rbegin() {
+			return reverse_iterator(_pointer + _size );
+		}
+
+		const_reverse_iterator rbegin() const {
+			return const_reverse_iterator(_pointer + _size );
+		}
+
+		reverse_iterator rend() {
+			return reverse_iterator(_pointer);
+		}
+		const_reverse_iterator rend() const {
+			return const_reverse_iterator(_pointer);
+		}
+
 		void reserve(size_t n) {
 			if (n > _capacity) {
 				pointer new_ptr = _allocator.allocate(n);
@@ -228,7 +303,7 @@ namespace ft{
 				{
 					int s = _size;
 					while(s--){
-						new_ptr[s] = _pointer[s - 1];
+						new_ptr[s] = _pointer[s];
 						_allocator.destroy(_pointer + s);
 					}
 					_allocator.deallocate(_pointer, _capacity);
@@ -253,13 +328,6 @@ namespace ft{
 //			}
 		}
 
-		void push_back(const T &value) {
-			if (_size == _capacity)
-				resize(_size + 1, value);
-			else
-				_allocator.construct(_pointer + _size++, value);
-		}
-
 		void resize(size_type n, value_type value = value_type())
 		{
 			if (_size > n) {
@@ -276,27 +344,15 @@ namespace ft{
 			}
 		}
 
-		void shrink_to_fit() {
-			if (_size < _capacity)
-			{
-
-				pointer new_data = _pointer;
-				_pointer = _allocator.allocate(_size);
-				for (size_type i = 0; i < _size; ++i)
-					_allocator.construct(&_pointer[i], new_data[i]);
-				size_type new_capacity = _size;
-				if (_pointer)
-					_allocator.deallocate(new_data, _capacity);
-				_capacity = _size;
-			}
-		}
-
-		size_t size() {
+		size_t size() const {
 			return _size;
 		}
 
-		size_t capacity(){
-			return _capacity;
+		void swap (vector& x) {
+			ft::swap(_allocator, x._allocator);
+			ft::swap(_pointer, x._pointer);
+			ft::swap(_size, x._size);
+			ft::swap(_capacity, x._capacity);
 		}
 
 		size_t max_size(){
@@ -312,19 +368,23 @@ namespace ft{
 			return *this;
 		}
 
-		reference operator[](difference_type n) { return _pointer[n]; }
+		reference operator[](difference_type n) {
+			return _pointer[n];
+		}
 
-		const_reference operator[](difference_type n) const { return _pointer[n]; }
+		const_reference operator[](difference_type n) const {
+			return _pointer[n];
+		}
 
 		friend bool operator== (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
 			if (lhs.size() == rhs.size()){
-				return std::equal(lhs.begin(), lhs.end(), rhs.begin());
+				return ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 			}
 			return false;
 		};
 
 		friend bool operator!= (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
-			return lhs != rhs;
+			return !(lhs==rhs);
 		};
 
 		friend bool operator< (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
@@ -337,11 +397,11 @@ namespace ft{
 		};
 
 		friend bool operator<= (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
-			return lhs <= rhs;
+			return !(lhs > rhs);
 		};
 
 		friend bool operator>= (const vector<T,Allocator>& lhs, const vector<T,Allocator>& rhs) {
-			return lhs >= rhs;
+			return !(lhs < rhs);
 		};
 	};
 }

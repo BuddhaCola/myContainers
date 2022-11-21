@@ -18,9 +18,9 @@ bool lexicographical_compare(InputIterator1 first1, InputIterator1 last1,
 
 	template<class T, T v>
 	struct integral_constant {
-		static const bool value = v;
-		typedef T value_type;
-		typedef integral_constant type;
+		static const bool			value = v;
+		typedef T					value_type;
+		typedef integral_constant	type;
 		operator value_type() const { return value; }
 	};
 	struct true_type : public ft::integral_constant<bool, true> {};
@@ -96,9 +96,12 @@ bool lexicographical_compare(InputIterator1 first1, InputIterator1 last1,
 		return true;
 	}
 
-	template <class T> void swap ( T& a, T& b )
+	template <class T>
+	void swap ( T& a, T& b )
 	{
-		T c(a); a=b; b=c;
+		T c(a);
+		a=b;
+		b=c;
 	}
 }
 #endif //MYCONTAINERS_ULTILS_H

@@ -339,6 +339,10 @@ namespace ft{
 			ft::swap(_capacity, x._capacity);
 		}
 
+		friend void swap(vector<T, Allocator>& x, vector<T, Allocator>& y) {
+			x.swap(y);
+		}
+
 		size_t max_size(){
 			return _allocator.max_size();
 		}
@@ -391,5 +395,12 @@ namespace ft{
 			return !(lhs < rhs);
 		};
 	};
+}
+
+namespace std {
+	template <class T, class Allocator>
+	void swap(ft::vector<T, Allocator>& v1, ft::vector<T, Allocator>& v2 ) {
+		v1.swap(v2);
+	}
 }
 #endif //CONTAINERS_VECTOR_H

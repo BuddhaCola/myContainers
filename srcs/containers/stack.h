@@ -1,11 +1,11 @@
 #ifndef STACK_HPP
 #define STACK_HPP
 
-#include <vector>
-#include <stack>
+#include "vector.h"
+#include <memory>
 
 namespace ft {
-	template<class T, class Container = std::vector<T> >
+	template<class T, class Container = ft::vector<T, std::allocator<T> > >
 	class stack {
 	public:
 		typedef Container									container_type;
@@ -23,7 +23,7 @@ namespace ft {
 			return container.empty();
 		}
 		size_type size() const {
-			return container._size();
+			return container.size();
 		}
 		reference top() {
 			return container.back();

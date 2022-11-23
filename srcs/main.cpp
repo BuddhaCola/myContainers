@@ -2,175 +2,116 @@
 #include <iostream>
 #include "containers/stack.h"
 #include "containers/vector.h"
-//#include "/Users/wtaylor/Projects/ft_containers_Dinar/vector.hpp"
+#include <vector>
+#include <sys/time.h>
 #include <sstream>
 
-void print_comparisation(std::vector<int>& orig, ft::vector<int>& mine, int i);
-
-//int main() {
-//	std::vector<int> orig;
-//	ft::vector<int> mine;
-//	int limit = 10;
-//	print_comparisation(orig, mine, -1);
-//	for (int i = 0; i < limit; ++i) {
-//		orig.push_back(i);
-//		mine.push_back(i);
-//		print_comparisation(orig, mine, i);
-//	}
-//	for (int i = 0; i < limit; ++i) {
-//		std::cout << "orig.at(" << i << ") = " << orig.at(i) << ' ';
-//	}
-//	std::cout << std::endl;
-//	for (int i = 0; i < limit; ++i) {
-//		std::cout << "mine.at(" << i << ") = " << mine.at(i) << ' ';
-//	}
-//	std::cout << std::endl;
-//	try {
-//		std::cout << "orig.at(" << limit + 1 << ")" << orig.at(limit + 1) << std::endl;
-//	}
-//	catch (std::exception &e) {
-//		std::cout << e.what() << std::endl;
-//	}
-//	try {
-//		std::cout << "mine.at(" << limit + 1 << ")" << mine.at(limit + 1) << std::endl;
-//	}
-//	catch (std::exception &e) {
-//		std::cout << e.what() << std::endl;
-//	}
-//	try {
-//		std::cout << "orig.data() = " << *orig.data() << std::endl;
-//	}
-//	catch (std::exception &e) {
-//		std::cout << e.what() << std::endl;
-//	}
-//	try {
-//		std::cout << "mine.data() = " << *mine.data() << std::endl;
-//	}
-//	catch (std::exception &e) {
-//		std::cout << e.what() << std::endl;
-//	}
-//	try {
-//		std::cout << "orig.data() + " << limit / 2 << " = " << *orig.data() + limit / 2 << std::endl;
-//	}
-//	catch (std::exception &e) {
-//		std::cout << e.what() << std::endl;
-//	}
-//	try {
-//		std::cout << "mine.data() + " << limit / 2 << " = " << *mine.data() + limit / 2 << std::endl;
-//	}
-//	catch (std::exception &e) {
-//		std::cout << e.what() << std::endl;
-//	}
-//	std::cout << "reserve(9900 * 10000)" << std::endl << "-------" << std::endl;
-//	orig.reserve(9900 * 10000);
-//	mine.reserve(9900 * 10000);
-//	print_comparisation(orig, mine, -1);
-//	std::cout << "shrink_to_fit()" << std::endl << "-------" << std::endl;
-//	orig.shrink_to_fit();
-//	mine.shrink_to_fit();
-//	print_comparisation(orig, mine, -1);
-//	std::cout << "clear()" << std::endl << "-------" << std::endl;
-//	orig.clear();
-//	mine.clear();
-//	print_comparisation(orig, mine, -1);
-//	for (int i = 0; i < limit; ++i) {
-//		orig.push_back(i);
-//		mine.push_back(i);
-//		print_comparisation(orig, mine, i);
-//	}
-//	std::cout << "resize(1000)" << std::endl << "-------" << std::endl;
-//	orig.resize(limit / 2);
-//	mine.resize(limit / 2);
-//	print_comparisation(orig, mine, -1);
-//	std::cout << "reserve(1100)" << std::endl << "-------" << std::endl;
-//	orig.reserve(1100);
-//	mine.reserve(1100);
-//	print_comparisation(orig, mine, -1);
-//}
-
-template <class T>std::string result(std::vector<T> v, int i) {
-	std::stringstream  stream;
-	size_t size = v.size();
-	stream << "size() = " << size;
-	size_t capacity = v.capacity();
-	stream << " capacity() = " << capacity;
-	size_t max_size = v.max_size();
-	stream << " max_size()" << max_size;
-	if (i >= 0) {
-		T q = v[i];
-		stream << " [" << i << "] = " << q;
-	}
-	stream << std::endl;
-	return stream.str();
+time_t timer() {
+	struct timeval start = {};
+	gettimeofday(&start, nullptr);
+	time_t msecs_time = (start.tv_sec * 1000) + (start.tv_usec / 1000);
+	return msecs_time;
 }
 
-template <class T>std::string result(ft::vector<T> &v, int i) {
-	std::stringstream  stream;
-	size_t size = v.size();
-	stream << "size() = " << size;
-	size_t capacity = v.capacity();
-	stream << " capacity() = " << capacity;
-	size_t max_size = v.max_size();
-	stream << " max_size()" << max_size;
-	if (i >= 0) {
-		T q = v[i];
-		stream << " [" << i << "] = " << q;
-	}
-	stream << std::endl;
-	return stream.str();
-}
-
-void print_comparisation(std::vector<int>& orig, ft::vector<int>& mine, int i) {
-	std::string std_result = result(orig, i);
-	std::string ft_result = result(mine, i);
-//	if (std_result != ft_result)
-		std::cout << "std " << std_result << "ft " << ft_result;
-}
-
-#include "/Users/wtaylor/Projects/ft_containers-unit-test/sources/system/system_methods.ipp"
-#include "/Users/wtaylor/Projects/ft_containers-unit-test/sources/vector_tests/__service.ipp"
-#include "/Users/wtaylor/Projects/ft_containers-unit-test/config.hpp"
-template <typename T>
-std::vector<int> constructor_test(std::vector<T> vector) {
+std::vector<int> swap_test_std() {
+	std::vector<int> vector;
+	int _ratio = 10000;
+	time_t g_start1;
+	time_t g_end1;
 	std::vector<int> v;
-	std::vector<int> tmp0(vector);
-	std::vector<int> tmp(1000 * _ratio, 4), tmp2(1000 * _ratio, 5);
-	tmp = tmp2;
-	std::vector<int> tmp3(tmp);
+	vector.assign(1100 * _ratio, 11);
+	std::vector<int> tmp(500 * _ratio, 5), tmp2(1000 * _ratio, 10), tmp3(1500 * _ratio, 15), tmp4(3000 * _ratio, 30);
 	g_start1 = timer();
-	std::vector<int> tmp4(tmp.begin(), tmp.end());
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
+	long *adr1 = reinterpret_cast<long *>(&vector);
+	long *adr2 = reinterpret_cast<long *>(&tmp);
+	vector.swap(tmp);
+	if (reinterpret_cast<long *>(&vector) == adr1 && reinterpret_cast<long *>(&tmp) == adr2)
+		v.push_back(1);
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
+	vector.swap(tmp3);
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
+	std::swap(vector, tmp2);
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
+	std::swap(vector, tmp4);
 	g_end1 = timer();
-	v.push_back(tmp4.size());
-	v.push_back(tmp4.capacity());
-	v.push_back(tmp[2]);
-	v.push_back(tmp3[2]);
-	v.push_back(tmp4[2]);
-	try { std::vector<int> tmp5(-1, -1); }
-	catch (std::exception &e) { v.push_back(1); }
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
 	return v;
 }
 
-template <typename T>
-std::vector<int> constructor_test(_vector<T> vector) {
+std::vector<int> swap_test() {
+	ft::vector<int> vector;
 	std::vector<int> v;
-	_vector<int> tmp0(vector);
-	_vector<int> tmp(1000 * _ratio, 4), tmp2(1000 * _ratio, 5);
-	tmp = tmp2;
-	_vector<int> tmp3(tmp);
-	g_start2 = timer();
-	_vector<int> tmp4(tmp.begin(), tmp.end());
-	g_end2 = timer();
-	v.push_back(tmp4.size());
-	v.push_back(tmp4.capacity());
-	v.push_back(tmp[2]);
-	v.push_back(tmp3[2]);
-	v.push_back(tmp4[2]);
-	try { _vector<int> tmp5(-1, -1); }
-	catch (std::exception &e) { v.push_back(1); }
+	int _ratio = 10000;
+	time_t gstart2;
+	time_t gend2;
+	vector.assign(1100 * _ratio, 11);
+	ft::vector<int> tmp(500 * _ratio, 5), tmp2(1000 * _ratio, 10), tmp3(1500 * _ratio, 15), tmp4(3000 * _ratio, 30);
+	gstart2 = timer();
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
+	long *adr1 = reinterpret_cast<long *>(&vector);
+	long *adr2 = reinterpret_cast<long *>(&tmp);
+	vector.swap(tmp);
+	if (reinterpret_cast<long *>(&vector) == adr1 && reinterpret_cast<long *>(&tmp) == adr2)
+		v.push_back(1);
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
+	vector.swap(tmp3);
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
+	ft::swap(vector, tmp2);
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
+	std::swap(vector, tmp4);
+	gend2 = timer();
+	v.push_back(vector[2]);
+	v.push_back(vector.size());
+	v.push_back(vector.capacity());
+	std::cout << gend2 - gstart2 << std::endl;
 	return v;
 }
 
 int main() {
+//	ft::stack<int> lol;
+//	int count = 1000;
+//	for (int i = 0; i < count; ++i) {
+//		lol.push(i * -100);
+////		std::cout << lol.top() << std::endl;
+//	}
+//	ft::stack<int> wow(lol);
+//	for (int i = 0; i < lol.size(); ++i) {
+//		std::cout << wow.top() << std::endl;
 
-	exit(run_vector_unit_test<int>("constructor", constructor_test, constructor_test));
+	std::vector<int> res = swap_test();
+	std::vector<int> res_std = swap_test_std();
+	bool o = res == res_std;
+	std::string lol;
+	std::string wow;
+	for (size_t i = 0; i < res.size(); ++i) {
+		lol += std::to_string(res[i]) += ' ';
+	}
+	for (size_t i = 0; i < res_std.size(); ++i) {
+		wow += std::to_string(res_std[i]) += ' ';
+	}
+	std::cout << lol << std::endl;
+	std::cout << wow << std::endl;
+	bool wtf = lol == wow;
+	std::cout << wtf << std::endl;
+//	std::cout << o << std::endl;
+//	std::cout << res << std::endl;
 }

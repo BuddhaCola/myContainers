@@ -66,8 +66,7 @@ namespace ft{
 
 		//member functions
 		template <class InputIterator>
-		void assign(
-				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type first,
+		void assign(typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type first,
 				InputIterator last) {
 			clear();
 			reserve(ft::distance(first, last));
@@ -311,21 +310,6 @@ namespace ft{
 				_pointer = new_ptr;
 				_capacity = n;
 			}
-//			if (n > capacity()) {
-//				T *newarr = reinterpret_cast<T *>(new int8_t[n * sizeof(T)]);
-//				if (n == 0)
-//					n = 1;
-//				for (size_t i = 0; i < _size; ++i) {
-//					auto lol = _pointer[i]; //the fuck?!
-//					new(newarr + i) T(lol);
-//				}
-//				for (size_t i = 0; i < _size; ++i) {
-//					(_pointer + i)->~T();
-//				}
-//				delete[] reinterpret_cast<int_fast8_t *>(_pointer);
-//				_pointer = newarr;
-//				_capacity = n;
-//			}
 		}
 
 		void resize(size_type n, value_type value = value_type())
@@ -364,6 +348,9 @@ namespace ft{
 			if (this == &other)
 				return *this;
 			clear();
+			_allocator.deallocate(_pointer, _capacity);
+			_pointer = _allocator.allocate(other._capacity);
+			_capacity = other._capacity;
 			insert(begin(), other.begin(), other.end());
 			return *this;
 		}

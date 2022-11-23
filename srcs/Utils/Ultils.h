@@ -100,8 +100,8 @@ bool lexicographical_compare(InputIterator1 first1, InputIterator1 last1,
 	void swap ( T& a, T& b )
 	{
 		T c(a);
-		a=b;
-		b=c;
+		a = b;
+		b = c;
 	}
 }
 #endif //MYCONTAINERS_ULTILS_H

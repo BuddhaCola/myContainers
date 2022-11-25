@@ -2,9 +2,47 @@
 #include <iostream>
 #include "containers/stack.h"
 #include "containers/vector.h"
+//#include "/Users/wtaylor/Projects/ft_containers_Dinar/vector.hpp"
 #include <vector>
 #include <sys/time.h>
 #include <sstream>
+#include <stack>
+
+
+int main() {
+	ft::stack<int> ft_stack;
+	std::stack<int> std_stack;
+	int count = 1000;
+	for (int i = 0; i < count; ++i) {
+		ft_stack.push(i * 3);
+		std_stack.push(i * 3);
+	}
+//	for (int i = 0; i < count; ++i) {
+//		std::cout << "ft [" << i << "] = " << ft_stack.top()  << std::endl;
+//		ft_stack.pop();
+//		std::cout << "std[" << i << "] = " << std_stack.top()  << std::endl;
+//		std_stack.pop();
+//	}
+	ft::stack<int> lol(ft_stack);
+	std::stack<int> laol;
+	std::stack<int> lao1l;
+	bool iw = laol != lao1l;
+	if (!laol.empty())
+	try { std::cout << "laol ["  "] = " << laol.top() << std::endl; }
+	catch (std::exception &e) {
+		e.what();
+	}
+	if (!lol.empty())
+	try { std::cout << "lol ["  "] = " << lol.top() << std::endl; }
+	catch (std::exception &e) {
+		e.what();
+	}
+	std::cout << "ft_stack ["  "] = " << ft_stack.top()  << std::endl;
+	ft::stack<int> wq;
+	bool wow = lol != lol;
+	bool woww = lol != ft_stack;
+	bool wowww = lol != wq;
+}
 
 time_t timer() {
 	struct timeval start = {};
@@ -73,7 +111,7 @@ std::vector<int> swap_test() {
 	v.push_back(vector[2]);
 	v.push_back(vector.size());
 	v.push_back(vector.capacity());
-	ft::swap(vector, tmp2);
+	std::swap(vector, tmp2);
 	v.push_back(vector[2]);
 	v.push_back(vector.size());
 	v.push_back(vector.capacity());
@@ -84,34 +122,4 @@ std::vector<int> swap_test() {
 	v.push_back(vector.capacity());
 	std::cout << gend2 - gstart2 << std::endl;
 	return v;
-}
-
-int main() {
-//	ft::stack<int> lol;
-//	int count = 1000;
-//	for (int i = 0; i < count; ++i) {
-//		lol.push(i * -100);
-////		std::cout << lol.top() << std::endl;
-//	}
-//	ft::stack<int> wow(lol);
-//	for (int i = 0; i < lol.size(); ++i) {
-//		std::cout << wow.top() << std::endl;
-
-	std::vector<int> res = swap_test();
-	std::vector<int> res_std = swap_test_std();
-	bool o = res == res_std;
-	std::string lol;
-	std::string wow;
-	for (size_t i = 0; i < res.size(); ++i) {
-		lol += std::to_string(res[i]) += ' ';
-	}
-	for (size_t i = 0; i < res_std.size(); ++i) {
-		wow += std::to_string(res_std[i]) += ' ';
-	}
-	std::cout << lol << std::endl;
-	std::cout << wow << std::endl;
-	bool wtf = lol == wow;
-	std::cout << wtf << std::endl;
-//	std::cout << o << std::endl;
-//	std::cout << res << std::endl;
 }

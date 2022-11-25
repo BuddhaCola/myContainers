@@ -16,6 +16,13 @@ namespace ft {
 	protected:
 		container_type container;
 	public:
+		explicit stack<T>(container_type container) : container(container) {}
+		stack()	: container() {}
+
+		stack(stack &other) /*: container(other.container)*/{
+			this->container = other.container;
+		}
+		~stack<T>(){}
 		void push(const value_type& valueType) {
 			container.push_back(valueType);
 		}
@@ -34,7 +41,31 @@ namespace ft {
 		void pop() {
 			container.pop_back();
 		}
-};
+
+		bool operator==(const stack &rhs) const {
+			return container == rhs.container;
+		}
+
+		bool operator!=(const stack &rhs) const {
+			return !(rhs == *this);
+		}
+
+		bool operator<(const stack &rhs) const {
+			return container < rhs.container;
+		}
+
+		bool operator>(const stack &rhs) const {
+			return rhs < *this;
+		}
+
+		bool operator<=(const stack &rhs) const {
+			return !(rhs < *this);
+		}
+
+		bool operator>=(const stack &rhs) const {
+			return !(*this < rhs);
+		}
+	};
 }
 
 #endif

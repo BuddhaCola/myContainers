@@ -7,41 +7,21 @@
 #include <sys/time.h>
 #include <sstream>
 #include <stack>
-
+#include <map>
+#include "Utils/red_black_tree.h"
+#include "containers/map.h"
 
 int main() {
-	ft::stack<int> ft_stack;
-	std::stack<int> std_stack;
-	int count = 1000;
-	for (int i = 0; i < count; ++i) {
-		ft_stack.push(i * 3);
-		std_stack.push(i * 3);
-	}
-//	for (int i = 0; i < count; ++i) {
-//		std::cout << "ft [" << i << "] = " << ft_stack.top()  << std::endl;
-//		ft_stack.pop();
-//		std::cout << "std[" << i << "] = " << std_stack.top()  << std::endl;
-//		std_stack.pop();
-//	}
-	ft::stack<int> lol(ft_stack);
-	std::stack<int> laol;
-	std::stack<int> lao1l;
-	bool iw = laol != lao1l;
-	if (!laol.empty())
-	try { std::cout << "laol ["  "] = " << laol.top() << std::endl; }
-	catch (std::exception &e) {
-		e.what();
-	}
-	if (!lol.empty())
-	try { std::cout << "lol ["  "] = " << lol.top() << std::endl; }
-	catch (std::exception &e) {
-		e.what();
-	}
-	std::cout << "ft_stack ["  "] = " << ft_stack.top()  << std::endl;
-	ft::stack<int> wq;
-	bool wow = lol != lol;
-	bool woww = lol != ft_stack;
-	bool wowww = lol != wq;
+	rbt<std::string, int> lol;
+	std::map<std::string, int> q;
+	std::pair<std::string, int> p;
+	p.first = "one";
+	p.second = 1000;
+	std::cout << p.second << std::endl;
+	q.insert(p);
+	std::cout << "q[0]: " << q["one"] << std::endl;
+	lol.push(2);
+	std::cout << lol["one"] << std::endl;
 }
 
 time_t timer() {

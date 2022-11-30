@@ -8,20 +8,12 @@
 #include <sstream>
 #include <stack>
 #include <map>
-#include "Utils/red_black_tree.h"
+#include "Utils/red_black_tree/red_black_tree.h"
 #include "containers/map.h"
 
 int main() {
-	rbt<std::string, int> lol;
-	std::map<std::string, int> q;
-	std::pair<std::string, int> p;
-	p.first = "one";
-	p.second = 1000;
-	std::cout << p.second << std::endl;
-	q.insert(p);
-	std::cout << "q[0]: " << q["one"] << std::endl;
-	lol.push(2);
-	std::cout << lol["one"] << std::endl;
+	tree<int, std::string> lol;
+	lol.insert(*(new std::pair<int, node<std::string> >(1, new node<std::string>("pait"))));
 }
 
 time_t timer() {

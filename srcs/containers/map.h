@@ -1,6 +1,7 @@
 #ifndef MYCONTAINERS_MAP_H
 #define MYCONTAINERS_MAP_H
-#include <memory>
+//#include <memory>
+#include "../Utils/red_black_tree/red_black_tree.h"
 template<
 		class Key,
 		class T,
@@ -9,7 +10,7 @@ template<
 > class map {
 public:
 	map() {
-		rbt<Key, T> data;
+		tree<Key, T> data;
 	}
 };
 #endif //MYCONTAINERS_MAP_H

@@ -23,7 +23,9 @@ public:
 
 	virtual ~vector_iterator() {}
 
-	pointer base() const { return _pointer; }
+	pointer base() const {
+		return _pointer;
+	}
 
 	vector_iterator &operator=(const vector_iterator &other) {
 		if (this == &other)
@@ -44,10 +46,14 @@ public:
 	}
 
 	template<class I>
-	bool operator==(const vector_iterator<I> &it) const { return _pointer == it.base(); }
+	bool operator==(const vector_iterator<I> &it) const {
+		return _pointer == it.base();
+	}
 
 	template<class I>
-	bool operator!=(const vector_iterator<I> &it) const { return _pointer != it.base(); }
+	bool operator!=(const vector_iterator<I> &it) const {
+		return _pointer != it.base();
+	}
 
 	vector_iterator &operator--() {
 		_pointer--;
@@ -64,24 +70,38 @@ public:
 		return _pointer + n;
 	}
 
-	vector_iterator operator-(difference_type n) const { return _pointer - n; }
+	vector_iterator operator-(difference_type n) const {
+		return _pointer - n;
+	}
 
 	template<typename T>
-	ptrdiff_t operator-(const vector_iterator<T> &it) { return this->base() - it.base(); }
+	ptrdiff_t operator-(const vector_iterator<T> &it) {
+		return this->base() - it.base();
+	}
 
-	pointer operator->() { return _pointer; }
-
-	template<class I>
-	bool operator>(const vector_iterator<I> &it) const { return _pointer > it.base(); }
-
-	template<class I>
-	bool operator<(const vector_iterator<I> &it) const { return _pointer < it.base(); }
+	pointer operator->() {
+		return _pointer;
+	}
 
 	template<class I>
-	bool operator>=(const vector_iterator<I> &it) const { return _pointer >= it.base(); }
+	bool operator>(const vector_iterator<I> &it) const {
+		return _pointer > it.base();
+	}
 
 	template<class I>
-	bool operator<=(const vector_iterator<I> &it) const { return _pointer <= it.base(); }
+	bool operator<(const vector_iterator<I> &it) const {
+		return _pointer < it.base();
+	}
+
+	template<class I>
+	bool operator>=(const vector_iterator<I> &it) const {
+		return _pointer >= it.base();
+	}
+
+	template<class I>
+	bool operator<=(const vector_iterator<I> &it) const {
+		return _pointer <= it.base();
+	}
 
 	vector_iterator operator+=(difference_type n) {
 		_pointer += n;
@@ -93,9 +113,13 @@ public:
 		return *this;
 	}
 
-	reference operator*() { return *_pointer; }
+	reference operator*() {
+		return *_pointer;
+	}
 
-	reference operator[](difference_type n) const { return _pointer[n]; }
+	reference operator[](difference_type n) const {
+		return _pointer[n];
+	}
 };
 }
 #endif //MYCONTAINERS_VECTOR_ITERATOR_H

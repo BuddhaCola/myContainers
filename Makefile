@@ -1,8 +1,6 @@
 NAME	= 	ft_containers
 
 SRC		=	srcs/main.cpp\
-#			srcs/contatiners/stack.h\
-#			srcs/contatiners/vector.h
 
 CXX		= c++
 

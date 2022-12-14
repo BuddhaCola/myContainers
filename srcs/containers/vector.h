@@ -88,6 +88,7 @@ namespace ft{
 		reference back() {
 			return _pointer[_size - 1];
 		}
+
 		const_reference back() const {
 			return _pointer[_size - 1];
 		}
@@ -100,7 +101,7 @@ namespace ft{
 			return const_iterator(_pointer);
 		}
 
-		size_t capacity(){
+		size_t capacity() {
 			return _capacity;
 		}
 
@@ -249,20 +250,20 @@ namespace ft{
 			}
 		}
 
-		void move(pointer ptr, size_type start_pos, size_type new_elements_size){
+		void move(pointer ptr, size_type start_pos, size_type new_elements_size) {
 			if (ptr) {
 				move_head(ptr, start_pos);
 				move_tail(ptr, start_pos, new_elements_size);
 			}
 		}
 
-		void move_head(pointer ptr, size_type start_pos){
+		void move_head(pointer ptr, size_type start_pos) {
 			for (size_type i = 0; i < start_pos; i++) {
 				_allocator.construct(ptr+i, _pointer[i]);
 			}
 		}
 
-		void move_tail(pointer ptr, size_type start_pos, size_type new_elements_size){
+		void move_tail(pointer ptr, size_type start_pos, size_type new_elements_size) {
 			for (size_type i = 0; i < _size-start_pos; i++) {
 				_allocator.construct(ptr+_size+new_elements_size-1-i, _pointer[_size-1-i]);
 			}

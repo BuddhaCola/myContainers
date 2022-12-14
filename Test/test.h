@@ -9,7 +9,7 @@
 #include <sstream>
 #include "../srcs/containers/vector.h"
 
-#define LIMIT 10000
+#define LIMIT 100
 
 class Test {
 protected:
@@ -37,7 +37,7 @@ public:
 		set_end();
 		get_time_result();
 		std::cout << "std time " << end - start << '|';
-		std::cout << "result comparisation: " << (ft_result == std_result ? "✅" : "❌") << std::endl;
+		std::cout << "result comparisation: " << (ft_result == std_result ? "✅ " : "❌ ") << std::endl;
 	}
 private:
 	void set_start() {
@@ -52,6 +52,28 @@ private:
 };
 class Vector_Test : Test {
 private:
+	static std::vector<int> test_at_std() {
+		int limit = LIMIT;
+		std::vector<int> vector;
+		std::vector<int> v;
+		vector.assign(9900 * limit, 1);
+		v.push_back(vector.at(354 * limit));
+		v.push_back(vector.size());
+		v.push_back(vector.capacity());
+		return v;
+	}
+
+	static std::vector<int> test_at_ft() {
+		int limit = LIMIT;
+		ft::vector<int> vector;
+		std::vector<int> v;
+		vector.assign(9900 * limit, 1);
+		v.push_back(vector.at(354 * limit));
+		v.push_back(vector.size());
+		v.push_back(vector.capacity());
+		return v;
+	}
+
 	static std::vector<int> test_assign_std() {
 		int limit = LIMIT;
 		std::vector<int> vector;
@@ -90,6 +112,50 @@ private:
 		return v;
 	}
 
+	static std::vector<int> test_back_std() {
+		int limit = LIMIT;
+		std::vector<int> vector;
+		std::vector<int> v;
+		for (int i = 0; i < limit; ++i) {
+			vector.push_back(i);
+		}
+		v.push_back(vector.back());
+		v.push_back(vector.size());
+		v.push_back(vector.capacity());
+		return v;
+	}
+
+	static std::vector<int> test_back_ft() {
+		int limit = LIMIT;
+		ft::vector<int> vector;
+		std::vector<int> v;
+		for (int i = 0; i < limit; ++i) {
+			vector.push_back(i);
+		}
+		v.push_back(vector.back());
+		v.push_back(vector.size());
+		v.push_back(vector.capacity());
+		return v;
+	}
+
+	static std::vector<int> test_begin_std() {
+		std::vector<int> vector;
+		std::vector<int> v;
+		vector.assign(1000, 1);
+		v.push_back(*vector.begin());
+		v.push_back(*++vector.begin());
+		return v;
+	}
+
+	static std::vector<int> test_begin_ft() {
+		ft::vector<int> vector;
+		std::vector<int> v;
+		vector.assign(1000, 1);
+		v.push_back(*vector.begin());
+		v.push_back(*++vector.begin());
+		return v;
+	}
+
 	static std::vector<int> test_push_back_ft() {
 		int limit = LIMIT;
 		ft::vector<int> vector;
@@ -115,10 +181,279 @@ private:
 		result.push_back(vector.back());
 		return result;
 	}
+
+	static std::vector<int> begin_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> begin_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> capacity_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> capacity_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> clear_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> clear_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> constructor_std_iterators_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> constructor_std_iterators_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> constructor_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> constructor_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> data_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> data_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> empty_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> empty_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> end_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> end_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> erase_range_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> erase_range_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> erase_value_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> erase_value_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> front_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> front_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> insert_fill_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> insert_fill_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> insert_range_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> insert_range_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> insert_std_iterators_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> insert_std_iterators_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> insert_value_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> insert_value_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> iterators_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> iterators_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> max_size_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> max_size_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> operator_not_equal_test_std(){
+		std::vector<int> v;
+		return v;
+	} // !=
+	static std::vector<int> operator_not_equal_test_ft(){
+		std::vector<int> v;
+		return v;
+	} // !=
+	static std::vector<int> operator_less_test_std(){
+		std::vector<int> v;
+		return v;
+	} // <
+	static std::vector<int> operator_less_test_ft(){
+		std::vector<int> v;
+		return v;
+	} // <
+	static std::vector<int> operator_less_equal_test_std(){
+		std::vector<int> v;
+		return v;
+	} // <=
+	static std::vector<int> operator_less_equal_test_ft(){
+		std::vector<int> v;
+		return v;
+	} // <=
+	static std::vector<int> operator_equal_test_std(){
+		std::vector<int> v;
+		return v;
+	} // ==
+	static std::vector<int> operator_equal_test_ft(){
+		std::vector<int> v;
+		return v;
+	} // ==
+	static std::vector<int> operator_more_test_std(){
+		std::vector<int> v;
+		return v;
+	} // >
+	static std::vector<int> operator_more_test_ft(){
+		std::vector<int> v;
+		return v;
+	} // >
+	static std::vector<int> operator_more_equal_test_std(){
+		std::vector<int> v;
+		return v;
+	} // >=
+	static std::vector<int> operator_more_equal_test_ft(){
+		std::vector<int> v;
+		return v;
+	} // >=
+	static std::vector<int> operator_angle_braces_test_std(){
+		std::vector<int> v;
+		return v;
+	} // []
+	static std::vector<int> operator_angle_braces_test_ft(){
+		std::vector<int> v;
+		return v;
+	} // []
+	static std::vector<int> pop_back_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> pop_back_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> push_back_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> push_back_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> rbegin_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> rbegin_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> rend_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> rend_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> reserve_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> reserve_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> resize_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> resize_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> size_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> size_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> swap_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> swap_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> using_allocator_test_std() {
+		std::vector<int> v;
+		return v;
+	}
+	static std::vector<int> using_allocator_test_ft() {
+		std::vector<int> v;
+		return v;
+	}
+
 public:
 	void run_all_tests() {
+		run_test(test_assign_ft, test_assign_std , "assign()");
+		run_test(test_at_ft, test_at_std , "at()");
+		run_test(test_back_ft, test_back_std , "back()");
+		run_test(test_begin_ft, test_begin_std , "begin()");
 		run_test(test_push_back_ft, test_push_back_std , "push_back()");
-//		run_test(test_assign_ft, test_assign_std , "assign()");
 	}
 };
 #endif //MYCONTAINERS_TEST_H

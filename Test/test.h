@@ -9,6 +9,7 @@
 #include <sstream>
 #include <iomanip>
 #include "../srcs/containers/vector.h"
+#include "../srcs/containers/stack.h"
 
 #define LIMIT 100
 
@@ -52,7 +53,7 @@ public:
 		get_time_result();
 		std::cout << "std time " << std::setw(4) << end - start;
 		std::cout << "|result comparisation: " << (ft_result == std_result ? "✅ " : "❌ ") << std::endl;
-//		print_results(std_result, ft_result);
+		print_results(std_result, ft_result);
 	}
 private:
 	void set_start() {
@@ -211,6 +212,7 @@ private:
 		result.push_back(vector.capacity());
 		return result;
 	}
+
 	static std::vector<int> test_capacity_ft() {
 		ft::vector<int> vector;
 		std::vector<int> result;
@@ -221,6 +223,7 @@ private:
 		result.push_back(vector.capacity());
 		return result;
 	}
+
 	static std::vector<int> test_clear_std() {
 		std::vector<int> result;
 		std::vector<int> vector;
@@ -235,6 +238,7 @@ private:
 		result.push_back(vector.capacity());
 		return result;
 	}
+
 	static std::vector<int> test_clear_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector;
@@ -249,6 +253,7 @@ private:
 		result.push_back(vector.capacity());
 		return result;
 	}
+
 	static std::vector<int> test_constructor_std_iterators_std() {
 		int limit = LIMIT;
 		std::vector<int> result;
@@ -262,6 +267,7 @@ private:
 			result.push_back(tmp2[i]);
 		return result;
 	}
+
 	static std::vector<int> test_constructor_std_iterators_ft() {
 		int limit = LIMIT;
 		std::vector<int> result;
@@ -275,6 +281,7 @@ private:
 			result.push_back(tmp2[i]);
 		return result;
 	}
+
 	static std::vector<int> test_constructor_std() {
 		int limit = LIMIT;
 		std::vector<int> result;
@@ -293,6 +300,7 @@ private:
 		catch (std::exception &e) { result.push_back(1); }
 		return result;
 	}
+
 	static std::vector<int> test_constructor_ft() {
 		int limit = LIMIT;
 		std::vector<int> result;
@@ -311,6 +319,7 @@ private:
 		catch (std::exception &e) { result.push_back(1); }
 		return result;
 	}
+
 	static std::vector<int> test_data_std() {
 		std::vector<int> result;
 		std::vector<int> vector (42);
@@ -323,6 +332,7 @@ private:
 			result.push_back(vector[i]);
 		return result;
 	}
+
 	static std::vector<int> test_data_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector (42);
@@ -335,6 +345,7 @@ private:
 			result.push_back(vector[i]);
 		return result;
 	}
+
 	static std::vector<int> test_empty_std() {
 		std::vector<int> result;
 		std::vector<int> vector;
@@ -343,6 +354,7 @@ private:
 		result.push_back(vector.empty());
 		return result;
 	}
+
 	static std::vector<int> test_empty_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector;
@@ -351,6 +363,7 @@ private:
 		result.push_back(vector.empty());
 		return result;
 	}
+
 	static std::vector<int> test_end_std() {
 		std::vector<int> result;
 		std::vector<int> vector;
@@ -361,6 +374,7 @@ private:
 		result.push_back(*(vector.end() - 2));
 		return result;
 	}
+
 	static std::vector<int> test_end_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector;
@@ -371,6 +385,7 @@ private:
 		result.push_back(*(vector.end() - 2));
 		return result;
 	}
+
 	static std::vector<int> test_erase_range_std() {
 		int limit = LIMIT;
 		std::vector<int> result;
@@ -386,6 +401,7 @@ private:
 		result.push_back(vector.capacity());
 		return result;
 	}
+
 	static std::vector<int> test_erase_range_ft() {
 		int limit = LIMIT;
 		std::vector<int> result;
@@ -416,6 +432,7 @@ private:
 		result.push_back(vector.front());
 		return result;
 	}
+
 	static std::vector<int> test_front_ft() {
 		int limit = LIMIT;
 		ft::vector<int> vector;
@@ -430,6 +447,7 @@ private:
 		result.push_back(vector.front());
 		return result;
 	}
+
 	static std::vector<int> test_insert_std() {
 		int limit = LIMIT;
 		std::vector<int> result;
@@ -441,6 +459,7 @@ private:
 		result.push_back(vector.capacity());
 		return result;
 	}
+
 	static std::vector<int> test_insert_ft() {
 		int limit = LIMIT;
 		std::vector<int> result;
@@ -460,6 +479,7 @@ private:
 		result.push_back(vector.max_size());
 		return result;
 	}
+
 	static std::vector<int> test_max_size_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector;
@@ -479,6 +499,7 @@ private:
 		result.push_back(vector[vector.back()]);
 		return result;
 	}
+
 	static std::vector<int> test_pop_back_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector;
@@ -502,6 +523,7 @@ private:
 		result.push_back(vector[*vector.rbegin()]);
 		return result;
 	}
+
 	static std::vector<int> test_rbegin_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector;
@@ -513,6 +535,7 @@ private:
 		result.push_back(vector[*vector.rbegin()]);
 		return result;
 	}
+
 	static std::vector<int> test_rend_std() {
 		std::vector<int> result;
 		std::vector<int> vector;
@@ -522,6 +545,7 @@ private:
 		result.push_back(vector[*vector.rend()]);
 		return result;
 	}
+
 	static std::vector<int> test_rend_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector;
@@ -531,6 +555,7 @@ private:
 		result.push_back(vector[*vector.rend()]);
 		return result;
 	}
+
 	static std::vector<int> test_reserve_std() {
 		std::vector<int> result;
 		std::vector<int> vector;
@@ -539,6 +564,7 @@ private:
 		result.push_back(vector.capacity());
 		return result;
 	}
+
 	static std::vector<int> test_reserve_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector;
@@ -547,6 +573,7 @@ private:
 		result.push_back(vector.capacity());
 		return result;
 	}
+
 	static std::vector<int> test_resize_std() {
 		std::vector<int> result;
 		std::vector<int> vector;
@@ -558,6 +585,7 @@ private:
 		result.push_back(vector.size());
 		return result;
 	}
+
 	static std::vector<int> test_resize_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector;
@@ -569,6 +597,7 @@ private:
 		result.push_back(vector.size());
 		return result;
 	}
+
 	static std::vector<int> test_size_std() {
 		std::vector<int> result;
 		int limit = LIMIT;
@@ -582,6 +611,7 @@ private:
 		result.push_back(vector.size());
 		return result;
 	}
+
 	static std::vector<int> test_size_ft() {
 		std::vector<int> result;
 		int limit = LIMIT;
@@ -595,6 +625,7 @@ private:
 		result.push_back(vector.size());
 		return result;
 	}
+
 	static std::vector<int> test_swap_std() {
 		std::vector<int> result;
 		std::vector<int> vector1;
@@ -615,6 +646,7 @@ private:
 		result.push_back(vector2.capacity());
 		return result;
 	}
+
 	static std::vector<int> test_swap_ft() {
 		std::vector<int> result;
 		ft::vector<int> vector1;
@@ -923,15 +955,6 @@ private:
 		return result;
 	}
 
-	static std::vector<int> test_using_allocator_std() {
-		std::vector<int> result;
-		return result;
-	}
-	static std::vector<int> test_using_allocator_ft() {
-		std::vector<int> result;
-		return result;
-	}
-
 public:
 	void run_all_tests() {
 		run_test(test_assign_ft, test_assign_std , "assign()");
@@ -966,5 +989,340 @@ public:
 		run_test(test_operator_more_equal_ft, test_operator_more_equal_std , "operator >=");
 		run_test(test_operator_angle_braces_ft, test_operator_angle_braces_std , "operator []");
 	}
+};
+
+class Stack_Test : Test {
+private:
+	static std::vector<int> test_constructor_ft() {
+		std::vector<int>	result;
+		int limit = LIMIT;
+		ft::vector<int>		vector;
+		for (int i = 0; i < limit; ++i) {
+			vector.push_back(i);
+		}
+		ft::vector<int>		vector2;
+		for (int i = 0; i < limit; ++i) {
+			vector2.push_back(i);
+		}
+		ft::stack<int>		stack1(vector);
+		ft::stack<int>		stack2(stack1);
+		result.push_back(stack1.size());
+		result.push_back(stack1.top());
+		stack1.pop();
+		result.push_back(stack1.top());
+		result.push_back(stack2.size());
+		result.push_back(stack2.top());
+		stack2.pop();
+		result.push_back(stack2.top());
+		return result;
+	}
+
+	static std::vector<int> test_constructor_std() {
+		std::vector<int>	result;
+		int limit = LIMIT;
+		std::deque<int>		deque;
+		for (int i = 0; i < limit; ++i) {
+			deque.push_back(i);
+		}
+		std::vector<int>		vector2;
+		for (int i = 0; i < limit; ++i) {
+			vector2.push_back(i);
+		}
+		std::stack<int>		stack1(deque);
+		std::stack<int>		stack2(stack1);
+		result.push_back(stack1.size());
+		result.push_back(stack1.top());
+		stack1.pop();
+		result.push_back(stack1.top());
+		result.push_back(stack2.size());
+		result.push_back(stack2.top());
+		stack2.pop();
+		result.push_back(stack2.top());
+		return result;
+	}
+
+	static std::vector<int> test_empty_ft() {
+		std::vector<int>	result;
+		ft::stack<int>		stack;
+		result.push_back(stack.empty());
+		for (int i = 0; i < 42; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.empty());
+		result.push_back(stack.top());
+		while (!stack.empty()) {
+			stack.pop();
+		}
+		result.push_back(stack.empty());
+		return result;
+	}
+
+	static std::vector<int> test_empty_std() {
+		std::vector<int>	result;
+		std::stack<int>		stack;
+		result.push_back(stack.empty());
+		for (int i = 0; i < 42; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.empty());
+		result.push_back(stack.top());
+		while (!stack.empty()) {
+			stack.pop();
+		}
+		result.push_back(stack.empty());
+		return result;
+	}
+
+	static std::vector<int> test_pop_ft() {
+		std::vector<int>	result;
+		int 				limit = LIMIT;
+		ft::stack<int>		stack;
+		result.push_back(stack.size());
+		for (int i = 0; i < limit; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.size());
+		result.push_back(stack.top());
+		for (int i = 0; i < limit / 2; ++i) {
+			stack.pop();
+		}
+		result.push_back(stack.size());
+		result.push_back(stack.top());
+		while (!stack.empty()) {
+			stack.pop();
+		}
+		result.push_back(stack.size());
+		return result;
+	}
+
+	static std::vector<int> test_pop_std() {
+		std::vector<int>	result;
+		int 				limit = LIMIT;
+		std::stack<int>		stack;
+		result.push_back(stack.size());
+		for (int i = 0; i < limit; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.size());
+		result.push_back(stack.top());
+		for (int i = 0; i < limit / 2; ++i) {
+			stack.pop();
+		}
+		result.push_back(stack.size());
+		result.push_back(stack.top());
+		while (!stack.empty()) {
+			stack.pop();
+		}
+		result.push_back(stack.size());
+		return result;
+	}
+
+	static std::vector<int> test_push_ft() {
+		std::vector<int>	result;
+		int 				limit = LIMIT;
+		ft::stack<int>		stack;
+		result.push_back(stack.size());
+		for (int i = 0; i < limit; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.size());
+		result.push_back(stack.top());
+		return result;
+	}
+
+	static std::vector<int> test_push_std() {
+		std::vector<int>	result;
+		int 				limit = LIMIT;
+		std::stack<int>		stack;
+		result.push_back(stack.size());
+		for (int i = 0; i < limit; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.size());
+		result.push_back(stack.top());
+		return result;
+	}
+
+	static std::vector<int> test_size_ft() {
+		std::vector<int>	result;
+		int 				limit = LIMIT;
+		ft::stack<int>		stack;
+		result.push_back(stack.size());
+		for (int i = 0; i < 42; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.size());
+		return result;
+	}
+
+	static std::vector<int> test_size_std() {
+		std::vector<int>	result;
+		int 				limit = LIMIT;
+		std::stack<int>		stack;
+		result.push_back(stack.size());
+		for (int i = 0; i < 42; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.size());
+		return result;
+	}
+
+	static std::vector<int> test_top_ft() {
+		std::vector<int>	result;
+		int 				limit = LIMIT;
+		ft::stack<int>		stack;
+		stack.push(stack.size());
+		result.push_back(stack.top());
+		for (int i = 0; i < 42; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.top());
+		for (int i = 0; i < 42; ++i) {
+			stack.push(i * -1);
+		}
+		result.push_back(stack.top());
+		return result;
+	}
+
+	static std::vector<int> test_top_std() {
+		std::vector<int>	result;
+		int 				limit = LIMIT;
+		std::stack<int>		stack;
+		stack.push(stack.size());
+		result.push_back(stack.top());
+		for (int i = 0; i < 42; ++i) {
+			stack.push(i);
+		}
+		result.push_back(stack.top());
+		for (int i = 0; i < 42; ++i) {
+			stack.push(i * -1);
+		}
+		result.push_back(stack.top());
+		return result;
+	}
+		static std::vector<int> test_operator_less_ft() {
+			std::vector<int>	result;
+			ft::stack<int>		stack1;
+			ft::stack<int>		stack2;
+			result.push_back(stack1 < stack2);
+			stack2.push(42);
+			result.push_back(stack1 < stack2);
+			stack1.push(42);
+			result.push_back(stack1 < stack2);
+			return result;
+	}
+		static std::vector<int> test_operator_less_std() {
+			std::vector<int>	result;
+			std::stack<int>		stack1;
+			std::stack<int>		stack2;
+			result.push_back(stack1 < stack2);
+			stack2.push(42);
+			result.push_back(stack1 < stack2);
+			stack1.push(42);
+			result.push_back(stack1 < stack2);
+			return result;
+	}
+		static std::vector<int> test_operator_less_equal_ft() {
+			std::vector<int>	result;
+			ft::stack<int>		stack1;
+			ft::stack<int>		stack2;
+			result.push_back(stack1 <= stack2);
+			stack2.push(42);
+			result.push_back(stack1 <= stack2);
+			stack1.push(42);
+			result.push_back(stack1 <= stack2);
+			return result;
+	}
+		static std::vector<int> test_operator_less_equal_std() {
+			std::vector<int>	result;
+			std::stack<int>		stack1;
+			std::stack<int>		stack2;
+			result.push_back(stack1 <= stack2);
+			stack2.push(42);
+			result.push_back(stack1 <= stack2);
+			stack1.push(42);
+			result.push_back(stack1 <= stack2);
+			return result;
+	}
+		static std::vector<int> test_operator_equal_ft() {
+			std::vector<int>	result;
+			ft::stack<int>		stack1;
+			ft::stack<int>		stack2;
+			result.push_back(stack1 == stack2);
+			stack2.push(42);
+			result.push_back(stack1 == stack2);
+			stack1.push(42);
+			result.push_back(stack1 == stack2);
+			return result;
+	}
+		static std::vector<int> test_operator_equal_std() {
+			std::vector<int>	result;
+			std::stack<int>		stack1;
+			std::stack<int>		stack2;
+			result.push_back(stack1 == stack2);
+			stack2.push(42);
+			result.push_back(stack1 == stack2);
+			stack1.push(42);
+			result.push_back(stack1 == stack2);
+			return result;
+	}
+		static std::vector<int> test_operator_more_ft() {
+			std::vector<int>	result;
+			ft::stack<int>		stack1;
+			ft::stack<int>		stack2;
+			result.push_back(stack1 > stack2);
+			stack2.push(42);
+			result.push_back(stack1 > stack2);
+			stack1.push(42);
+			result.push_back(stack1 > stack2);
+			return result;
+	}
+		static std::vector<int> test_operator_more_std() {
+			std::vector<int>	result;
+			std::stack<int>		stack1;
+			std::stack<int>		stack2;
+			result.push_back(stack1 > stack2);
+			stack2.push(42);
+			result.push_back(stack1 > stack2);
+			stack1.push(42);
+			result.push_back(stack1 > stack2);
+			return result;
+	}
+		static std::vector<int> test_operator_more_equal_ft() {
+			std::vector<int>	result;
+			ft::stack<int>		stack1;
+			ft::stack<int>		stack2;
+			result.push_back(stack1 >= stack2);
+			stack2.push(42);
+			result.push_back(stack1 >= stack2);
+			stack1.push(42);
+			result.push_back(stack1 >= stack2);
+			return result;
+	}
+		static std::vector<int> test_operator_more_equal_std() {
+			std::vector<int>	result;
+			std::stack<int>		stack1;
+			std::stack<int>		stack2;
+			result.push_back(stack1 >= stack2);
+			stack2.push(42);
+			result.push_back(stack1 >= stack2);
+			stack1.push(42);
+			result.push_back(stack1 >= stack2);
+			return result;
+	}
+public:
+	void run_all_tests() {
+		run_test(test_constructor_ft, test_constructor_std , "constructor()");
+		run_test(test_empty_ft, test_empty_std , "empty()");
+		run_test(test_pop_ft, test_pop_std , "pop()");
+		run_test(test_push_ft, test_push_std , "push()");
+		run_test(test_size_ft, test_size_std , "size()");
+		run_test(test_top_ft, test_top_std , "top()");
+		run_test(test_operator_less_ft, test_operator_less_std , "operator <");
+		run_test(test_operator_less_equal_ft, test_operator_less_equal_std , "operator <=");
+		run_test(test_operator_equal_ft, test_operator_equal_std , "operator ==");
+		run_test(test_operator_more_ft, test_operator_more_std , "operator >");
+		run_test(test_operator_more_equal_ft, test_operator_more_equal_std , "operator >=");
+}
 };
 #endif //MYCONTAINERS_TEST_H

@@ -1,6 +1,8 @@
-#include "test.h"
 #ifndef MYCONTAINERS_STACK_TEST_H
 #define MYCONTAINERS_STACK_TEST_H
+
+#include "test.h"
+#include "../srcs/containers/stack.h"
 class Stack_Test : Test {
 private:
 	static std::vector<int> test_constructor_ft() {

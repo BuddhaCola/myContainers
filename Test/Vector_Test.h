@@ -1,6 +1,9 @@
 #ifndef MYCONTAINERS_VECTOR_TEST_H
 #define MYCONTAINERS_VECTOR_TEST_H
+
 #include "test.h"
+#include "../srcs/containers/vector.h"
+
 class Vector_Test : Test {
 private:
 	static std::vector<int> test_at_std() {

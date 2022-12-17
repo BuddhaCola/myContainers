@@ -8,8 +8,6 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
-#include "../srcs/containers/vector.h"
-#include "../srcs/containers/stack.h"
 
 #define LIMIT 100
 
@@ -28,14 +26,14 @@ public:
 
 	virtual void run_all_tests() {}
 
-	void print_results(std::vector<int> &std_result, std::vector<int> &ft_result) {
+	static void print_results(std::vector<int> &std_result, std::vector<int> &ft_result) {
 		std::cout << "std:";
-		for (int & it : std_result) {
-			std::cout << it << '|';
+		for (std::vector<int>::iterator it = std_result.begin(); it != std_result.end(); it++) {
+			std::cout << *it << '|';
 		}
 		std::cout << std::endl  << "ft :";
-		for (int & it : ft_result) {
-			std::cout << it << '|';
+		for (std::vector<int>::iterator it = ft_result.begin(); it != ft_result.end(); it++) {
+			std::cout << *it << '|';
 		}
 		std::cout << std::endl;
 	}
@@ -53,7 +51,7 @@ public:
 		get_time_result();
 		std::cout << "std time " << std::setw(4) << end - start;
 		std::cout << "|result comparisation: " << (ft_result == std_result ? "✅ " : "❌ ") << std::endl;
-//		print_results(std_result, ft_result);
+		print_results(std_result, ft_result);
 	}
 private:
 	void set_start() {
@@ -66,5 +64,4 @@ private:
 		return end - start;
 	}
 };
-
 #endif //MYCONTAINERS_TEST_H

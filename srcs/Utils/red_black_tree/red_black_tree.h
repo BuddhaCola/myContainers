@@ -119,18 +119,19 @@ namespace ft {
 		pointer lower_bound(const key_type key) const {
 			if (_root != _nil)
 			{
-				pointer node, remembered;
-				for (node = _root, remembered = _root; node != _nil;) {
+				pointer node;
+				pointer tmp;
+				for (node = _root, tmp = _root; node != _nil;) {
 					if (key == node->data->first)
 						return node;
 					if (_cmp(key, node->data->first)) {
-						remembered = node;
+						tmp = node;
 						node = node->left;
 					}
 					else
 						node = node->right;
 				}
-				return _cmp(key, remembered->data->first) ? remembered : _nil;
+				return _cmp(key, tmp->data->first) ? tmp : _nil;
 			}
 			return _nil;
 		}

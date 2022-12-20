@@ -255,6 +255,118 @@ private:
 		result.push_back(map2.size());
 		return result;
 	}
+	static std::vector<int>test_key_comp_ft(){
+		std::vector<int> result;
+		ft::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
+		ft::map<int, int>::key_compare comp = map.key_comp();
+		int needle = map.find(limit / 3)->first;
+		ft::map<int, int>::iterator it = map.begin();
+		result.push_back(comp(it->first, needle));
+		while (comp(it++->first, needle))
+			;
+		result.push_back(comp(it->first, needle));
+		result.push_back(it->first);
+		result.push_back(it->second);
+		return result;
+	}
+	static std::vector<int>test_key_comp_std(){
+		std::vector<int> result;
+		std::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
+		std::map<int, int>::key_compare comp = map.key_comp();
+		int needle = map.find(limit / 3)->first;
+		std::map<int, int>::iterator it = map.begin();
+		result.push_back(comp(it->first, needle));
+		while (comp(it++->first, needle))
+			;
+		result.push_back(comp(it->first, needle));
+		result.push_back(it->first);
+		result.push_back(it->second);
+		return result;
+	}
+	static std::vector<int>test_lower_bound_ft(){
+		std::vector<int> result;
+		ft::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
+		ft::map<int, int>::iterator lower = map.lower_bound(limit / 4);
+		result.push_back(lower->first);
+		result.push_back(lower->second);
+		return result;
+	}
+	static std::vector<int>test_lower_bound_std(){
+		std::vector<int> result;
+		std::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
+		std::map<int, int>::iterator lower = map.lower_bound(limit / 4);
+		result.push_back(lower->first);
+		result.push_back(lower->second);
+		return result;
+	}
+	static std::vector<int>test_max_size_ft() {
+		std::vector<int> result;
+		ft::map<int, int> map;
+		result.push_back(map.max_size());
+		return result;
+	}
+	static std::vector<int>test_max_size_std() {
+		std::vector<int> result;
+		std::map<int, int> map;
+		result.push_back(map.max_size());
+		return result;
+	}
+	static std::vector<int>test_size_ft() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int>test_size_std() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int>test_swap_ft() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int>test_swap_std() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int>test_upper_bound_ft() {
+		std::vector<int> result;
+		ft::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
+		ft::map<int, int>::iterator upper = map.upper_bound(limit / 4);
+		result.push_back(upper->first);
+		result.push_back(upper->second);
+		return result;
+	}
+	static std::vector<int>test_upper_bound_std() {
+		std::vector<int> result;
+		std::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
+		std::map<int, int>::iterator upper = map.upper_bound(limit / 4);
+		result.push_back(upper->first);
+		result.push_back(upper->second);
+		return result;
+	}
 
 	static std::vector<int>test_constructor_ft(){
 		std::vector<int> result;
@@ -399,6 +511,72 @@ private:
 		result.push_back(it4->second);
 		return result;
 	}
+	// key_redefinition
+	// operator !=
+	static std::vector<int> test_operator_not_equal_ft() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int> test_operator_not_equal_std() {
+		std::vector<int> result;
+		return result;
+	}
+	// operator <
+	static std::vector<int> test_operator_less_ft() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int> test_operator_less_std() {
+		std::vector<int> result;
+		return result;
+	}
+	// operator <=
+	static std::vector<int> test_operator_less_equal_ft() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int> test_operator_less_equal_std() {
+		std::vector<int> result;
+		return result;
+	}
+	// operator ==
+	static std::vector<int> test_operator_equal_ft() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int> test_operator_equal_std() {
+		std::vector<int> result;
+		return result;
+	}
+	// operator >
+	static std::vector<int> test_operator_more_ft() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int> test_operator_more_std() {
+		std::vector<int> result;
+		return result;
+	}
+	// operator >=
+	static std::vector<int> test_operator_more_equal_ft() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int> test_operator_more_equal_std() {
+		std::vector<int> result;
+		return result;
+	}
+	// operator[]
+	static std::vector<int> test_operator_angle_braces_ft() {
+		std::vector<int> result;
+		return result;
+	}
+	static std::vector<int> test_operator_angle_braces_std() {
+		std::vector<int> result;
+		return result;
+	}
+	// reverse iterators
+	// using allocator
 public:
 	void run_all_tests() {
 		run_test(test_at_ft, test_at_std , "at()");
@@ -409,9 +587,21 @@ public:
 		run_test(test_erase_ft, test_erase_std , "erase()");
 		run_test(test_find_ft, test_find_std , "find()");
 		run_test(test_insert_ft, test_insert_std , "insert()");
-
-		run_test(test_constructor_ft, test_constructor_std , "constructor"); //not implemented
-		run_test(test_iterators_ft, test_iterators_std , "iterators"); //not implemented
+		run_test(test_key_comp_ft, test_key_comp_std , "key_comp()");
+		run_test(test_lower_bound_ft, test_lower_bound_std , "lower_bound()");
+		run_test(test_max_size_ft, test_max_size_std , "max_size()");
+		run_test(test_size_ft, test_size_std , "size()");
+		run_test(test_swap_ft, test_swap_std , "swap()");
+		run_test(test_upper_bound_ft, test_upper_bound_std , "upper_bound()");
+		run_test(test_constructor_ft, test_constructor_std , "constructor");
+		run_test(test_iterators_ft, test_iterators_std , "iterators");
+		run_test(test_operator_not_equal_ft, test_operator_not_equal_std , "operator !=");
+		run_test(test_operator_less_ft, test_operator_less_std , "operator <");
+		run_test(test_operator_less_equal_ft, test_operator_less_equal_std , "operator <=");
+		run_test(test_operator_equal_ft, test_operator_equal_std , "operator ==");
+		run_test(test_operator_more_ft, test_operator_more_std , "operator >");
+		run_test(test_operator_more_equal_ft, test_operator_more_equal_std , "operator >=");
+		run_test(test_operator_angle_braces_ft, test_operator_angle_braces_std , "operator []");
 	}
 };
 #endif //MYCONTAINERS_MAP_TEST_H

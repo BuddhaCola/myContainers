@@ -200,17 +200,85 @@ private:
 		return result;
 	}
 
+	static std::vector<int>test_find_ft(){
+		std::vector<int> result;
+		ft::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
+		result.push_back(map.find(42)->second);
+		result.push_back(map.find(0)->second);
+		return result;
+	}
+	static std::vector<int>test_find_std(){
+		std::vector<int> result;
+		std::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
+		result.push_back(map.find(42)->second);
+		result.push_back(map.find(0)->second);
+		return result;
+	}
+
+	static std::vector<int>test_insert_ft(){
+		std::vector<int> result;
+		ft::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
+		ft::map<int, int>::iterator it = map.begin();
+		result.push_back(it->second);
+		result.push_back(map.size());
+		ft::map<int, int> map2;
+		map2.insert(map.find(42), map.end());
+		result.push_back(map2.begin()->second);
+		result.push_back(map2.size());
+		return result;
+	}
+	static std::vector<int>test_insert_std(){
+		std::vector<int> result;
+		std::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
+		std::map<int, int>::iterator it = map.begin();
+		result.push_back(it->second);
+		result.push_back(map.size());
+		std::map<int, int> map2;
+		map2.insert(map.find(42), map.end());
+		result.push_back(map2.begin()->second);
+		result.push_back(map2.size());
+		return result;
+	}
+
 	static std::vector<int>test_constructor_ft(){
 		std::vector<int> result;
 		ft::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
 		result.push_back(map.size());
+		ft::map<int, int> map2(map);
+		result.push_back(map2.size());
 		return result;
 	}
 
 	static std::vector<int>test_constructor_std(){
 		std::vector<int> result;
 		std::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
 		result.push_back(map.size());
+		std::map<int, int> map2(map);
+		result.push_back(map2.size());
 		return result;
 	}
 public:
@@ -221,6 +289,8 @@ public:
 		run_test(test_empty_ft, test_empty_std , "empty()");
 		run_test(test_equal_range_ft, test_equal_range_std , "equal_range()");
 		run_test(test_erase_ft, test_erase_std , "erase()");
+		run_test(test_find_ft, test_find_std , "find()");
+		run_test(test_insert_ft, test_insert_std , "insert()");
 
 
 		run_test(test_constructor_ft, test_constructor_std , "constructor()"); //not implemented

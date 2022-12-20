@@ -281,6 +281,124 @@ private:
 		result.push_back(map2.size());
 		return result;
 	}
+	static std::vector<int>test_iterators_ft(){
+		std::vector<int> result;
+		ft::map<int, int> map;
+		for (int i = 0, j = -100; i < 100; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
+		ft::map<int, int>::iterator it1 = map.begin();
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		it1++;
+		it1++;
+		it1++;
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		it1--;
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		it1++;
+		it1++;
+		it1++;
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		it1--;
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		ft::map<int, int>::iterator it2 = --map.end();
+		result.push_back(it2->first);
+		result.push_back(it2->second);
+		it2--;
+		it2--;
+		it2--;
+		result.push_back(it2->first);
+		result.push_back(it2->second);
+		it2--;
+		it2--;
+		it2--;
+		it2++;
+		result.push_back(it2->first);
+		result.push_back(it2->second);
+		ft::map<int, int>::reverse_iterator it3 = ++map.rbegin();
+		result.push_back(it3->first);
+		result.push_back(it3->second);
+		it3++;
+		it3++;
+		it3++;
+		it3--;
+		result.push_back(it3->first);
+		result.push_back(it3->second);
+		ft::map<int, int>::reverse_iterator it4 = --map.rend();
+		result.push_back(it4->first);
+		result.push_back(it4->second);
+		it4--;
+		it4--;
+		it4--;
+		it4++;
+		result.push_back(it4->first);
+		result.push_back(it4->second);
+		return result;
+	}
+	static std::vector<int>test_iterators_std(){
+		std::vector<int> result;
+		std::map<int, int> map;
+		for (int i = 0, j = -100; i < 100; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
+		std::map<int, int>::iterator it1 = map.begin();
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		it1++;
+		it1++;
+		it1++;
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		it1--;
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		it1++;
+		it1++;
+		it1++;
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		it1--;
+		result.push_back(it1->first);
+		result.push_back(it1->second);
+		std::map<int, int>::iterator it2 = --map.end();
+		result.push_back(it2->first);
+		result.push_back(it2->second);
+		it2--;
+		it2--;
+		it2--;
+		result.push_back(it2->first);
+		result.push_back(it2->second);
+		it2--;
+		it2--;
+		it2--;
+		it2++;
+		result.push_back(it2->first);
+		result.push_back(it2->second);
+		std::map<int, int>::reverse_iterator it3 = ++map.rbegin();
+		result.push_back(it3->first);
+		result.push_back(it3->second);
+		it3++;
+		it3++;
+		it3++;
+		it3--;
+		result.push_back(it3->first);
+		result.push_back(it3->second);
+		std::map<int, int>::reverse_iterator it4 = --map.rend();
+		result.push_back(it4->first);
+		result.push_back(it4->second);
+		it4--;
+		it4--;
+		it4--;
+		it4++;
+		result.push_back(it4->first);
+		result.push_back(it4->second);
+		return result;
+	}
 public:
 	void run_all_tests() {
 		run_test(test_at_ft, test_at_std , "at()");
@@ -292,8 +410,8 @@ public:
 		run_test(test_find_ft, test_find_std , "find()");
 		run_test(test_insert_ft, test_insert_std , "insert()");
 
-
-		run_test(test_constructor_ft, test_constructor_std , "constructor()"); //not implemented
+		run_test(test_constructor_ft, test_constructor_std , "constructor"); //not implemented
+		run_test(test_iterators_ft, test_iterators_std , "iterators"); //not implemented
 	}
 };
 #endif //MYCONTAINERS_MAP_TEST_H

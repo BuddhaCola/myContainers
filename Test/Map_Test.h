@@ -130,6 +130,7 @@ private:
 		result.push_back(range3.second->second);
 		return result;
 	}
+
 	static std::vector<int>test_equal_range_ft(){
 		std::vector<int> result;
 		ft::map<int, int> map;
@@ -178,6 +179,7 @@ private:
 		result.push_back(map.size());
 		return result;
 	}
+
 	static std::vector<int>test_erase_std(){
 		std::vector<int> result;
 		int limit = LIMIT;
@@ -211,6 +213,7 @@ private:
 		result.push_back(map.find(0)->second);
 		return result;
 	}
+
 	static std::vector<int>test_find_std(){
 		std::vector<int> result;
 		std::map<int, int> map;
@@ -239,6 +242,7 @@ private:
 		result.push_back(map2.size());
 		return result;
 	}
+
 	static std::vector<int>test_insert_std(){
 		std::vector<int> result;
 		std::map<int, int> map;
@@ -255,6 +259,7 @@ private:
 		result.push_back(map2.size());
 		return result;
 	}
+
 	static std::vector<int>test_key_comp_ft(){
 		std::vector<int> result;
 		ft::map<int, int> map;
@@ -273,6 +278,7 @@ private:
 		result.push_back(it->second);
 		return result;
 	}
+
 	static std::vector<int>test_key_comp_std(){
 		std::vector<int> result;
 		std::map<int, int> map;
@@ -291,6 +297,7 @@ private:
 		result.push_back(it->second);
 		return result;
 	}
+
 	static std::vector<int>test_lower_bound_ft(){
 		std::vector<int> result;
 		ft::map<int, int> map;
@@ -303,6 +310,7 @@ private:
 		result.push_back(lower->second);
 		return result;
 	}
+
 	static std::vector<int>test_lower_bound_std(){
 		std::vector<int> result;
 		std::map<int, int> map;
@@ -315,34 +323,103 @@ private:
 		result.push_back(lower->second);
 		return result;
 	}
+
 	static std::vector<int>test_max_size_ft() {
 		std::vector<int> result;
 		ft::map<int, int> map;
 		result.push_back(map.max_size());
 		return result;
 	}
+
 	static std::vector<int>test_max_size_std() {
 		std::vector<int> result;
 		std::map<int, int> map;
 		result.push_back(map.max_size());
 		return result;
 	}
+
 	static std::vector<int>test_size_ft() {
 		std::vector<int> result;
+		ft::map<int, int> map;
+		int limit = LIMIT;
+		result.push_back(map.size());
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
+		result.push_back(map.size());
+		ft::map<int, int> map2(map);
+		result.push_back(map2.size());
+		map.clear();
+		result.push_back(map.size());
 		return result;
 	}
+
 	static std::vector<int>test_size_std() {
 		std::vector<int> result;
+		std::map<int, int> map;
+		int limit = LIMIT;
+		result.push_back(map.size());
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
+		result.push_back(map.size());
+		std::map<int, int> map2(map);
+		result.push_back(map2.size());
+		map.clear();
+		result.push_back(map.size());
 		return result;
 	}
+
 	static std::vector<int>test_swap_ft() {
 		std::vector<int> result;
+		ft::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
+		ft::map<int, int> map2;
+		map2.insert(ft::make_pair(24, 42));
+		result.push_back(map.size());
+		result.push_back(map.begin()->first);
+		result.push_back(map.begin()->second);
+		result.push_back(map2.size());
+		result.push_back(map2.begin()->first);
+		result.push_back(map2.begin()->second);
+		map.swap(map2);
+		result.push_back(map.size());
+		result.push_back(map.begin()->first);
+		result.push_back(map.begin()->second);
+		result.push_back(map2.size());
+		result.push_back(map2.begin()->first);
+		result.push_back(map2.begin()->second);
 		return result;
 	}
+
 	static std::vector<int>test_swap_std() {
 		std::vector<int> result;
+		std::map<int, int> map;
+		int limit = LIMIT;
+		for (int i = 0, j = -limit; i < limit; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
+		std::map<int, int> map2;
+		map2.insert(std::make_pair(24, 42));
+		result.push_back(map.size());
+		result.push_back(map.begin()->first);
+		result.push_back(map.begin()->second);
+		result.push_back(map2.size());
+		result.push_back(map2.begin()->first);
+		result.push_back(map2.begin()->second);
+		map.swap(map2);
+		result.push_back(map.size());
+		result.push_back(map.begin()->first);
+		result.push_back(map.begin()->second);
+		result.push_back(map2.size());
+		result.push_back(map2.begin()->first);
+		result.push_back(map2.begin()->second);
 		return result;
 	}
+
 	static std::vector<int>test_upper_bound_ft() {
 		std::vector<int> result;
 		ft::map<int, int> map;
@@ -355,6 +432,7 @@ private:
 		result.push_back(upper->second);
 		return result;
 	}
+
 	static std::vector<int>test_upper_bound_std() {
 		std::vector<int> result;
 		std::map<int, int> map;
@@ -393,6 +471,7 @@ private:
 		result.push_back(map2.size());
 		return result;
 	}
+
 	static std::vector<int>test_iterators_ft(){
 		std::vector<int> result;
 		ft::map<int, int> map;
@@ -452,6 +531,7 @@ private:
 		result.push_back(it4->second);
 		return result;
 	}
+
 	static std::vector<int>test_iterators_std(){
 		std::vector<int> result;
 		std::map<int, int> map;
@@ -511,72 +591,286 @@ private:
 		result.push_back(it4->second);
 		return result;
 	}
-	// key_redefinition
-	// operator !=
+
 	static std::vector<int> test_operator_not_equal_ft() {
 		std::vector<int> result;
+		ft::map<int, int> map1;
+		ft::map<int, int> map2;
+		ft::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(ft::make_pair(i, j));
+		}
+		result.push_back(map1 != map2);
+		result.push_back(map1 != map3);
 		return result;
 	}
+
 	static std::vector<int> test_operator_not_equal_std() {
 		std::vector<int> result;
+		std::map<int, int> map1;
+		std::map<int, int> map2;
+		std::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(std::make_pair(i, j));
+		}
+		result.push_back(map1 != map2);
+		result.push_back(map1 != map3);
 		return result;
 	}
-	// operator <
+
 	static std::vector<int> test_operator_less_ft() {
 		std::vector<int> result;
+		ft::map<int, int> map1;
+		ft::map<int, int> map2;
+		ft::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(ft::make_pair(i, j));
+		}
+		result.push_back(map1 < map2);
+		result.push_back(map1 < map3);
 		return result;
 	}
+
 	static std::vector<int> test_operator_less_std() {
 		std::vector<int> result;
+		std::map<int, int> map1;
+		std::map<int, int> map2;
+		std::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(std::make_pair(i, j));
+		}
+		result.push_back(map1 < map2);
+		result.push_back(map1 < map3);
 		return result;
 	}
-	// operator <=
+
 	static std::vector<int> test_operator_less_equal_ft() {
 		std::vector<int> result;
+		ft::map<int, int> map1;
+		ft::map<int, int> map2;
+		ft::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(ft::make_pair(i, j));
+		}
+		result.push_back(map1 <= map2);
+		result.push_back(map1 <= map3);
 		return result;
 	}
+
 	static std::vector<int> test_operator_less_equal_std() {
 		std::vector<int> result;
+		std::map<int, int> map1;
+		std::map<int, int> map2;
+		std::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(std::make_pair(i, j));
+		}
+		result.push_back(map1 <= map2);
+		result.push_back(map1 <= map3);
 		return result;
 	}
-	// operator ==
+
 	static std::vector<int> test_operator_equal_ft() {
 		std::vector<int> result;
+		ft::map<int, int> map1;
+		ft::map<int, int> map2;
+		ft::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(ft::make_pair(i, j));
+		}
+		result.push_back(map1 == map2);
+		result.push_back(map1 == map3);
 		return result;
 	}
+
 	static std::vector<int> test_operator_equal_std() {
 		std::vector<int> result;
+		std::map<int, int> map1;
+		std::map<int, int> map2;
+		std::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(std::make_pair(i, j));
+		}
+		result.push_back(map1 == map2);
+		result.push_back(map1 == map3);
 		return result;
 	}
-	// operator >
+
 	static std::vector<int> test_operator_more_ft() {
 		std::vector<int> result;
+		ft::map<int, int> map1;
+		ft::map<int, int> map2;
+		ft::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(ft::make_pair(i, j));
+		}
+		result.push_back(map1 > map2);
+		result.push_back(map1 > map3);
 		return result;
 	}
+
 	static std::vector<int> test_operator_more_std() {
 		std::vector<int> result;
+		std::map<int, int> map1;
+		std::map<int, int> map2;
+		std::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(std::make_pair(i, j));
+		}
+		result.push_back(map1 > map2);
+		result.push_back(map1 > map3);
 		return result;
 	}
-	// operator >=
+
 	static std::vector<int> test_operator_more_equal_ft() {
 		std::vector<int> result;
+		ft::map<int, int> map1;
+		ft::map<int, int> map2;
+		ft::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(ft::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(ft::make_pair(i, j));
+		}
+		result.push_back(map1 >= map2);
+		result.push_back(map1 >= map3);
 		return result;
 	}
+
 	static std::vector<int> test_operator_more_equal_std() {
 		std::vector<int> result;
+		std::map<int, int> map1;
+		std::map<int, int> map2;
+		std::map<int, int> map3;
+		int bigger = LIMIT;
+		int lesser = bigger / 2;
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map1.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -42; i < lesser; ++i, --j) {
+			map2.insert(std::make_pair(i, j));
+		}
+		for (int i = 0, j = -100; i < bigger; ++i, --j) {
+			map3.insert(std::make_pair(i, j));
+		}
+		result.push_back(map1 >= map2);
+		result.push_back(map1 >= map3);
 		return result;
 	}
-	// operator[]
+
 	static std::vector<int> test_operator_angle_braces_ft() {
 		std::vector<int> result;
+		int limit = LIMIT;
+		ft::map<int, int> map;
+		int lesser = limit / 2;
+		for (int i = 0, j = -100; i < limit; ++i, --j) {
+			map.insert(ft::make_pair(i, j));
+		}
+		result.push_back(map[0]);
+		result.push_back(map[limit - 1]);
+		result.push_back(map[limit / 2]);
 		return result;
 	}
+
 	static std::vector<int> test_operator_angle_braces_std() {
 		std::vector<int> result;
+		int limit = LIMIT;
+		std::map<int, int> map;
+		int lesser = limit / 2;
+		for (int i = 0, j = -100; i < limit; ++i, --j) {
+			map.insert(std::make_pair(i, j));
+		}
+		result.push_back(map[0]);
+		result.push_back(map[limit - 1]);
+		result.push_back(map[limit / 2]);
 		return result;
 	}
-	// reverse iterators
-	// using allocator
 public:
 	void run_all_tests() {
 		run_test(test_at_ft, test_at_std , "at()");

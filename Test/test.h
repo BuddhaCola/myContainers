@@ -51,7 +51,7 @@ public:
 		get_time_result();
 		std::cout << "std time " << std::setw(4) << end - start;
 		std::cout << "|result comparisation: " << (ft_result == std_result ? "✅ " : "❌ ") << std::endl;
-		print_results(std_result, ft_result);
+//		print_results(std_result, ft_result);
 	}
 private:
 	void set_start() {

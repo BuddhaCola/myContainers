@@ -1,23 +1,20 @@
-#ifndef MYCONTAINERS_RED_BLACK_TREE_H
-#define MYCONTAINERS_RED_BLACK_TREE_H
-
+#ifndef MYCONTAINERS_RED_BLACK_TREE_SET_H
+#define MYCONTAINERS_RED_BLACK_TREE_SET_H
 #include "tree_node.h"
-
 namespace ft {
-	template<class T1, class T2, class Compare, class Alloc>
-	class red_black_tree {
+	template<class T, class Compare, class Alloc>
+	class red_black_tree_set {
 	public:
-		typedef T1														key_type;
-		typedef T2														mapped_type;
-		typedef Compare													key_compare;
-		typedef typename Alloc::template rebind< tree_node_kv<T1, T2> >::other	allocator_type;
-		typedef typename allocator_type::value_type						value_type;
-		typedef typename allocator_type::reference						reference;
-		typedef typename allocator_type::const_reference				const_reference;
-		typedef typename allocator_type::pointer						pointer;
-		typedef typename allocator_type::const_pointer					const_pointer;
-		typedef typename allocator_type::size_type						size_type;
-		typedef typename allocator_type::difference_type				difference_type;
+		typedef T															mapped_type;
+		typedef Compare														key_compare;
+		typedef typename Alloc::template rebind< tree_node_v<T> >::other	allocator_type;
+		typedef typename allocator_type::value_type							value_type;
+		typedef typename allocator_type::reference							reference;
+		typedef typename allocator_type::const_reference					const_reference;
+		typedef typename allocator_type::pointer							pointer;
+		typedef typename allocator_type::const_pointer						const_pointer;
+		typedef typename allocator_type::size_type							size_type;
+		typedef typename allocator_type::difference_type					difference_type;
 
 	private:
 		allocator_type	_allocator;
@@ -27,16 +24,16 @@ namespace ft {
 		size_type		_size;
 
 	public:
-		red_black_tree() : _allocator(), _cmp(key_compare()), _root(_allocator.allocate(1)), _nil(_root), _size(0) {
-			_allocator.construct(_nil, value_type(key_type(), mapped_type(), NULL, nil_node));
+		red_black_tree_set() : _allocator(), _cmp(key_compare()), _root(_allocator.allocate(1)), _nil(_root), _size(0) {
+			_allocator.construct(_nil, value_type(mapped_type(), NULL, nil_node));
 		}
 
-		~red_black_tree() {
+		~red_black_tree_set() {
 			_clear(_root);
 			_free_node(_nil);
 		}
 
-		red_black_tree& operator =(const red_black_tree& other) {
+		red_black_tree_set& operator =(const red_black_tree_set& other) {
 			if (this == &other)
 				return *this;
 			clear();
@@ -47,21 +44,21 @@ namespace ft {
 			return *this;
 		}
 
-		ft::pair<pointer, bool> insert(ft::pair<key_type, mapped_type> pair) {
+		ft::pair<pointer, bool> insert(mapped_type value) {
 			pointer current, parent, new_node;
 			for (current = _root, parent = _nil; current != _nil;) {
-				if (pair.first == current->data->first)
+				if (value == *current->data)
 					return ft::pair<pointer, bool>(current, false);
 				parent = current;
-				current = _cmp(pair.first, current->data->first) ? current->left : current->right;
+				current = _cmp(value, *current->data) ? current->left : current->right;
 			}
 			new_node = _allocator.allocate(1);
-			_allocator.construct(new_node, value_type(pair.first, pair.second, _nil, red_node));
+			_allocator.construct(new_node, value_type(value, _nil, red_node));
 			new_node->parent = parent;
 			if (parent == _nil)
 				_root = new_node;
 			else {
-				if (_cmp(pair.first, parent->data->first))
+				if (_cmp(value, *parent->data))
 					parent->left = new_node;
 				else
 					parent->right = new_node;
@@ -72,7 +69,7 @@ namespace ft {
 			return ft::pair<pointer, bool>(new_node, true);
 		}
 
-		bool erase(key_type key) {
+		bool erase(value_type key) {
 			pointer node = _find(_root, key);
 			if (node == _nil)
 				return false;
@@ -104,7 +101,7 @@ namespace ft {
 
 		void clear() { _clear(_root); }
 
-		void swap(red_black_tree& other) {
+		void swap(red_black_tree_set& other) {
 			std::swap(_nil, other._nil);
 			std::swap(_root, other._root);
 			std::swap(_cmp, other._cmp);
@@ -112,44 +109,44 @@ namespace ft {
 			std::swap(_size, other._size);
 		}
 
-		pointer find(key_type key) const {
-			return _find(_root, key);
+		pointer find(value_type value) const {
+			return _find(_root, value);
 		}
 
-		pointer lower_bound(const key_type key) const {
+		pointer lower_bound(const value_type value) const {
 			if (_root != _nil)
 			{
 				pointer node;
 				pointer tmp;
 				for (node = _root, tmp = _root; node != _nil;) {
-					if (key == node->data->first)
+					if (value == node->data->first)
 						return node;
-					if (_cmp(key, node->data->first)) {
+					if (_cmp(value, node->data->first)) {
 						tmp = node;
 						node = node->left;
 					}
 					else
 						node = node->right;
 				}
-				return _cmp(key, tmp->data->first) ? tmp : _nil;
+				return _cmp(value, tmp->data->first) ? tmp : _nil;
 			}
 			return _nil;
 		}
 
-		pointer upper_bound(const key_type key) const {
+		pointer upper_bound(const value_type value) const {
 			if (_root != _nil)
 			{
 				pointer	node;
 				pointer	tmp;
 				for (node = _root, tmp = _root; node != _nil;) {
-					if (_cmp(key, node->data->first)) {
+					if (_cmp(value, node->data->first)) {
 						tmp = node;
 						node = node->left;
 					}
 					else
 						node = node->right;
 				}
-				return _cmp(key, tmp->data->first) ? tmp : _nil;
+				return _cmp(value, tmp->data->first) ? tmp : _nil;
 			}
 			return _nil;
 		}
@@ -200,14 +197,14 @@ namespace ft {
 		}
 
 
-		pointer _find(pointer node, key_type key) const {
+		pointer _find(pointer node, value_type value) const {
 			if (node != _nil) {
-				if (node->data->first == key)
+				if (node->data->first == value)
 					return node;
-				else if (_cmp(key, node->data->first))
-					return _find(node->left, key);
+				else if (_cmp(value, node->data->first))
+					return _find(node->left, value);
 				else
-					return _find(node->right, key);
+					return _find(node->right, value);
 			}
 			return _nil;
 		}
@@ -285,7 +282,7 @@ namespace ft {
 
 				if (y != node_to_erase) {
 					delete node_to_erase->data;
-					node_to_erase->data = new ft::pair<const key_type, mapped_type>(y->data->first, y->data->second);
+					node_to_erase->data = value_type (y->data->first, y->data->second);
 				}
 
 				if (y->type == black_node)
@@ -408,4 +405,4 @@ namespace ft {
 		}
 	};
 }
-#endif //MYCONTAINERS_RED_BLACK_TREE_H
+#endif //MYCONTAINERS_RED_BLACK_TREE_SET_H

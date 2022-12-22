@@ -10,11 +10,11 @@ private:
 		std::vector<int> result;
 		int limit = LIMIT;
 		ft::map<int, int> map;
-		for (int i = 0, j = -42; i < 70 * limit; ++i, --j)
+		for (int i = 0, j = -42; i < limit; ++i, --j)
 			map.insert(ft::make_pair(i, j));
 		try {
-			result.push_back(map.at(40 * limit));
-			result.push_back(map.at(40 * limit + 1));
+			result.push_back(map.at(limit));
+			result.push_back(map.at(limit + 1));
 		} catch (std::exception &e) {
 			result.push_back(-42);
 		}
@@ -25,11 +25,11 @@ private:
 		std::vector<int> result;
 		int limit = LIMIT;
 		std::map<int, int> map;
-		for (int i = 0, j = -42; i < 70 * limit; ++i, --j)
+		for (int i = 0, j = -42; i < limit; ++i, --j)
 			map.insert(std::make_pair(i, j));
 		try {
-			result.push_back(map.at(40 * limit));
-			result.push_back(map.at(40 * limit + 1));
+			result.push_back(map.at(limit));
+			result.push_back(map.at(limit + 1));
 		} catch (std::exception &e) {
 			result.push_back(-42);
 		}
@@ -40,7 +40,7 @@ private:
 		std::vector<int> result;
 		ft::map<int, int> map;
 		int limit = LIMIT;
-		for (int i = 0, j = -42; i < 70 * limit; ++i, --j)
+		for (int i = 0, j = -42; i < limit; ++i, --j)
 			map.insert(ft::make_pair(i, j));
 		result.push_back(map.size());
 		map.clear();
@@ -52,7 +52,7 @@ private:
 		std::vector<int> result;
 		std::map<int, int> map;
 		int limit = LIMIT;
-		for (int i = 0, j = -42; i < 70 * limit; ++i, --j)
+		for (int i = 0, j = -42; i < limit; ++i, --j)
 			map.insert(std::make_pair(i, j));
 		result.push_back(map.size());
 		map.clear();
@@ -65,7 +65,7 @@ private:
 		ft::map<int, int> map;
 		int limit = LIMIT;
 		result.push_back(map.count(42));
-		for (int i = 0; i < 70 * limit; ++i)
+		for (int i = 0; i < limit; ++i)
 			map.insert(ft::make_pair(i, i % 2 ? 42 : i));
 		result.push_back(map.count(42));
 		return result;
@@ -76,7 +76,7 @@ private:
 		std::map<int, int> map;
 		int limit = LIMIT;
 		result.push_back(map.count(42));
-		for (int i = 0; i < 70 * limit; ++i)
+		for (int i = 0; i < limit; ++i)
 			map.insert(std::make_pair(i, i % 2 ? 42 : i));
 		result.push_back(map.count(42));
 		return result;

@@ -113,40 +113,40 @@ namespace ft {
 			return _find(_root, value);
 		}
 
-		pointer lower_bound(const value_type value) const {
+		pointer lower_bound(const mapped_type value) const {
 			if (_root != _nil)
 			{
 				pointer node;
 				pointer tmp;
 				for (node = _root, tmp = _root; node != _nil;) {
-					if (value == node->data->first)
+					if (value == *node->data)
 						return node;
-					if (_cmp(value, node->data->first)) {
+					if (_cmp(value, *node->data)) {
 						tmp = node;
 						node = node->left;
 					}
 					else
 						node = node->right;
 				}
-				return _cmp(value, tmp->data->first) ? tmp : _nil;
+				return _cmp(value, *tmp->data) ? tmp : _nil;
 			}
 			return _nil;
 		}
 
-		pointer upper_bound(const value_type value) const {
+		pointer upper_bound(const mapped_type value) const {
 			if (_root != _nil)
 			{
 				pointer	node;
 				pointer	tmp;
 				for (node = _root, tmp = _root; node != _nil;) {
-					if (_cmp(value, node->data->first)) {
+					if (_cmp(value, *node->data)) {
 						tmp = node;
 						node = node->left;
 					}
 					else
 						node = node->right;
 				}
-				return _cmp(value, tmp->data->first) ? tmp : _nil;
+				return _cmp(value, *tmp->data) ? tmp : _nil;
 			}
 			return _nil;
 		}
@@ -199,9 +199,9 @@ namespace ft {
 
 		pointer _find(pointer node, value_type value) const {
 			if (node != _nil) {
-				if (node->data->first == value)
+				if (*node->data == *value.data)
 					return node;
-				else if (_cmp(value, node->data->first))
+				else if (_cmp(*value.data, *node->data))
 					return _find(node->left, value);
 				else
 					return _find(node->right, value);
@@ -282,7 +282,7 @@ namespace ft {
 
 				if (y != node_to_erase) {
 					delete node_to_erase->data;
-					node_to_erase->data = value_type (y->data->first, y->data->second);
+					node_to_erase->data = new mapped_type (*y->data);
 				}
 
 				if (y->type == black_node)
